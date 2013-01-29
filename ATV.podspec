@@ -9,5 +9,8 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/pnc/ATV.git", :branch => "master" }
 
   s.platform     = :ios, '4.3'
+  s.framework  = 'CoreData'
+  s.requires_arc = true
+
   s.source_files = 'ATV/*.{h,m}'
 end
