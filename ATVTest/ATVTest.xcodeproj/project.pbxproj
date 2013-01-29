@@ -1,0 +1,343 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		536FE08116B8300E0025549F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536FE08016B8300E0025549F /* UIKit.framework */; };
+		536FE08316B8300E0025549F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536FE08216B8300E0025549F /* Foundation.framework */; };
+		536FE08516B8300E0025549F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536FE08416B8300E0025549F /* CoreGraphics.framework */; };
+		536FE08B16B8300E0025549F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 536FE08916B8300E0025549F /* InfoPlist.strings */; };
+		536FE08D16B8300E0025549F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE08C16B8300E0025549F /* main.m */; };
+		536FE09116B8300E0025549F /* ATVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE09016B8300E0025549F /* ATVAppDelegate.m */; };
+		536FE09316B8300E0025549F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 536FE09216B8300E0025549F /* Default.png */; };
+		536FE09516B8300E0025549F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 536FE09416B8300E0025549F /* Default@2x.png */; };
+		536FE09716B8300E0025549F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 536FE09616B8300E0025549F /* Default-568h@2x.png */; };
+		536FE0AF16B830810025549F /* ATVArrayTableSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0A416B830710025549F /* ATVArrayTableSection.m */; };
+		536FE0B016B830810025549F /* ATVManagedTableSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0A716B830710025549F /* ATVManagedTableSection.m */; };
+		536FE0B116B830810025549F /* ATVTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0A916B830710025549F /* ATVTableView.m */; };
+		536FE0B216B830810025549F /* ATVObjectsTableSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0AB16B830710025549F /* ATVObjectsTableSection.m */; };
+		536FE0B316B830810025549F /* ATVTableSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0AE16B830710025549F /* ATVTableSection.m */; };
+		536FE0B716B831070025549F /* ATVExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0B516B831070025549F /* ATVExampleViewController.m */; };
+		536FE0B816B831070025549F /* ATVExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536FE0B616B831070025549F /* ATVExampleViewController.xib */; };
+		536FE0BF16B834B80025549F /* ATVMessageSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0BE16B834B80025549F /* ATVMessageSection.m */; };
+		536FE0C216B836530025549F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536FE0C116B836520025549F /* CoreData.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		536FE07C16B8300E0025549F /* ATVTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATVTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		536FE08016B8300E0025549F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		536FE08216B8300E0025549F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		536FE08416B8300E0025549F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		536FE08816B8300E0025549F /* ATVTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ATVTest-Info.plist"; sourceTree = "<group>"; };
+		536FE08A16B8300E0025549F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		536FE08C16B8300E0025549F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		536FE08E16B8300E0025549F /* ATVTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATVTest-Prefix.pch"; sourceTree = "<group>"; };
+		536FE08F16B8300E0025549F /* ATVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATVAppDelegate.h; sourceTree = "<group>"; };
+		536FE09016B8300E0025549F /* ATVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATVAppDelegate.m; sourceTree = "<group>"; };
+		536FE09216B8300E0025549F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		536FE09416B8300E0025549F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		536FE09616B8300E0025549F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		536FE0A316B830710025549F /* ATVArrayTableSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATVArrayTableSection.h; path = ../ATV/ATVArrayTableSection.h; sourceTree = "<group>"; };
+		536FE0A416B830710025549F /* ATVArrayTableSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATVArrayTableSection.m; path = ../ATV/ATVArrayTableSection.m; sourceTree = "<group>"; };
+		536FE0A516B830710025549F /* ATVManagedTableSection_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATVManagedTableSection_Private.h; path = ../ATV/ATVManagedTableSection_Private.h; sourceTree = "<group>"; };
+		536FE0A616B830710025549F /* ATVManagedTableSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATVManagedTableSection.h; path = ../ATV/ATVManagedTableSection.h; sourceTree = "<group>"; };
+		536FE0A716B830710025549F /* ATVManagedTableSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATVManagedTableSection.m; path = ../ATV/ATVManagedTableSection.m; sourceTree = "<group>"; };
+		536FE0A816B830710025549F /* ATVTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATVTableView.h; path = ../ATV/ATVTableView.h; sourceTree = "<group>"; };
+		536FE0A916B830710025549F /* ATVTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATVTableView.m; path = ../ATV/ATVTableView.m; sourceTree = "<group>"; };
+		536FE0AA16B830710025549F /* ATVObjectsTableSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATVObjectsTableSection.h; path = ../ATV/ATVObjectsTableSection.h; sourceTree = "<group>"; };
+		536FE0AB16B830710025549F /* ATVObjectsTableSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATVObjectsTableSection.m; path = ../ATV/ATVObjectsTableSection.m; sourceTree = "<group>"; };
+		536FE0AC16B830710025549F /* ATVTableSection_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATVTableSection_Private.h; path = ../ATV/ATVTableSection_Private.h; sourceTree = "<group>"; };
+		536FE0AD16B830710025549F /* ATVTableSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATVTableSection.h; path = ../ATV/ATVTableSection.h; sourceTree = "<group>"; };
+		536FE0AE16B830710025549F /* ATVTableSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ATVTableSection.m; path = ../ATV/ATVTableSection.m; sourceTree = "<group>"; };
+		536FE0B416B831070025549F /* ATVExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATVExampleViewController.h; sourceTree = "<group>"; };
+		536FE0B516B831070025549F /* ATVExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATVExampleViewController.m; sourceTree = "<group>"; };
+		536FE0B616B831070025549F /* ATVExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ATVExampleViewController.xib; sourceTree = "<group>"; };
+		536FE0BD16B834B80025549F /* ATVMessageSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATVMessageSection.h; sourceTree = "<group>"; };
+		536FE0BE16B834B80025549F /* ATVMessageSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATVMessageSection.m; sourceTree = "<group>"; };
+		536FE0C116B836520025549F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		536FE07916B8300E0025549F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				536FE0C216B836530025549F /* CoreData.framework in Frameworks */,
+				536FE08116B8300E0025549F /* UIKit.framework in Frameworks */,
+				536FE08316B8300E0025549F /* Foundation.framework in Frameworks */,
+				536FE08516B8300E0025549F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		536FE07116B8300E0025549F = {
+			isa = PBXGroup;
+			children = (
+				536FE0A116B830620025549F /* ATV */,
+				536FE08616B8300E0025549F /* ATVTest */,
+				536FE07F16B8300E0025549F /* Frameworks */,
+				536FE07D16B8300E0025549F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		536FE07D16B8300E0025549F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				536FE07C16B8300E0025549F /* ATVTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		536FE07F16B8300E0025549F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				536FE0C116B836520025549F /* CoreData.framework */,
+				536FE08016B8300E0025549F /* UIKit.framework */,
+				536FE08216B8300E0025549F /* Foundation.framework */,
+				536FE08416B8300E0025549F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		536FE08616B8300E0025549F /* ATVTest */ = {
+			isa = PBXGroup;
+			children = (
+				536FE08F16B8300E0025549F /* ATVAppDelegate.h */,
+				536FE09016B8300E0025549F /* ATVAppDelegate.m */,
+				536FE08716B8300E0025549F /* Supporting Files */,
+				536FE0B416B831070025549F /* ATVExampleViewController.h */,
+				536FE0B516B831070025549F /* ATVExampleViewController.m */,
+				536FE0B616B831070025549F /* ATVExampleViewController.xib */,
+				536FE0BD16B834B80025549F /* ATVMessageSection.h */,
+				536FE0BE16B834B80025549F /* ATVMessageSection.m */,
+			);
+			path = ATVTest;
+			sourceTree = "<group>";
+		};
+		536FE08716B8300E0025549F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				536FE08816B8300E0025549F /* ATVTest-Info.plist */,
+				536FE08916B8300E0025549F /* InfoPlist.strings */,
+				536FE08C16B8300E0025549F /* main.m */,
+				536FE08E16B8300E0025549F /* ATVTest-Prefix.pch */,
+				536FE09216B8300E0025549F /* Default.png */,
+				536FE09416B8300E0025549F /* Default@2x.png */,
+				536FE09616B8300E0025549F /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		536FE0A116B830620025549F /* ATV */ = {
+			isa = PBXGroup;
+			children = (
+				536FE0A316B830710025549F /* ATVArrayTableSection.h */,
+				536FE0A416B830710025549F /* ATVArrayTableSection.m */,
+				536FE0A516B830710025549F /* ATVManagedTableSection_Private.h */,
+				536FE0A616B830710025549F /* ATVManagedTableSection.h */,
+				536FE0A716B830710025549F /* ATVManagedTableSection.m */,
+				536FE0A816B830710025549F /* ATVTableView.h */,
+				536FE0A916B830710025549F /* ATVTableView.m */,
+				536FE0AA16B830710025549F /* ATVObjectsTableSection.h */,
+				536FE0AB16B830710025549F /* ATVObjectsTableSection.m */,
+				536FE0AC16B830710025549F /* ATVTableSection_Private.h */,
+				536FE0AD16B830710025549F /* ATVTableSection.h */,
+				536FE0AE16B830710025549F /* ATVTableSection.m */,
+			);
+			name = ATV;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		536FE07B16B8300E0025549F /* ATVTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 536FE09A16B8300E0025549F /* Build configuration list for PBXNativeTarget "ATVTest" */;
+			buildPhases = (
+				536FE07816B8300E0025549F /* Sources */,
+				536FE07916B8300E0025549F /* Frameworks */,
+				536FE07A16B8300E0025549F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ATVTest;
+			productName = ATVTest;
+			productReference = 536FE07C16B8300E0025549F /* ATVTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		536FE07316B8300E0025549F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ATV;
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = 536FE07616B8300E0025549F /* Build configuration list for PBXProject "ATVTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 536FE07116B8300E0025549F;
+			productRefGroup = 536FE07D16B8300E0025549F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				536FE07B16B8300E0025549F /* ATVTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		536FE07A16B8300E0025549F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				536FE08B16B8300E0025549F /* InfoPlist.strings in Resources */,
+				536FE09316B8300E0025549F /* Default.png in Resources */,
+				536FE09516B8300E0025549F /* Default@2x.png in Resources */,
+				536FE09716B8300E0025549F /* Default-568h@2x.png in Resources */,
+				536FE0B816B831070025549F /* ATVExampleViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		536FE07816B8300E0025549F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				536FE08D16B8300E0025549F /* main.m in Sources */,
+				536FE09116B8300E0025549F /* ATVAppDelegate.m in Sources */,
+				536FE0AF16B830810025549F /* ATVArrayTableSection.m in Sources */,
+				536FE0B016B830810025549F /* ATVManagedTableSection.m in Sources */,
+				536FE0B116B830810025549F /* ATVTableView.m in Sources */,
+				536FE0B216B830810025549F /* ATVObjectsTableSection.m in Sources */,
+				536FE0B316B830810025549F /* ATVTableSection.m in Sources */,
+				536FE0B716B831070025549F /* ATVExampleViewController.m in Sources */,
+				536FE0BF16B834B80025549F /* ATVMessageSection.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		536FE08916B8300E0025549F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				536FE08A16B8300E0025549F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		536FE09816B8300E0025549F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		536FE09916B8300E0025549F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		536FE09B16B8300E0025549F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ATVTest/ATVTest-Prefix.pch";
+				INFOPLIST_FILE = "ATVTest/ATVTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		536FE09C16B8300E0025549F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ATVTest/ATVTest-Prefix.pch";
+				INFOPLIST_FILE = "ATVTest/ATVTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		536FE07616B8300E0025549F /* Build configuration list for PBXProject "ATVTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				536FE09816B8300E0025549F /* Debug */,
+				536FE09916B8300E0025549F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		536FE09A16B8300E0025549F /* Build configuration list for PBXNativeTarget "ATVTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				536FE09B16B8300E0025549F /* Debug */,
+				536FE09C16B8300E0025549F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 536FE07316B8300E0025549F /* Project object */;
+}
