@@ -5,6 +5,7 @@
 @interface ATVTableSection : NSObject
 @property (strong) NSString *identifier;
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *footerTitle;
 @property (nonatomic, strong) UIView *headerView;
 
 // Designated initializer. Use this one.

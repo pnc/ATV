@@ -22,6 +22,11 @@
   [self reloadSectionWithRowAnimation:UITableViewRowAnimationNone];
 }
 
+- (void)setFooterTitle:(NSString *)footerTitle {
+  _footerTitle = footerTitle;
+  [self reloadSectionWithRowAnimation:UITableViewRowAnimationNone];
+}
+
 #pragma mark - Cell source
 - (UITableViewCell *)cellForRowAtIndex:(NSUInteger)index {
   NSAssert(NO, @"Override this method.");

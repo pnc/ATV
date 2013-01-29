@@ -88,6 +88,12 @@
   return tableSection.title;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+  ATVTableSection *tableSection = [self.sections objectAtIndex:section];
+  return tableSection.footerTitle;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
   ATVTableSection *tableSection = [self.sections objectAtIndex:section];
