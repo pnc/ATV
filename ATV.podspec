@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
 
   s.license      = 'MIT (example)'
   s.author       = { "Phil Calvin" => "pnc1138@gmail.com" }
-  s.source       = { :git => "https://github.com/pnc/ATV.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/pnc/ATV.git", :branch => "master" }
 
   s.platform     = :ios, '4.3'
   s.source_files = 'ATV/*.{h,m}'
