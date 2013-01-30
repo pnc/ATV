@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.framework  = 'CoreData'
   s.requires_arc = true
 
-  s.source_files = 'ATV/*.{h,m}'
+  s.source_files = 'ATV/ATV*.{h,m}'
 end
