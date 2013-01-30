@@ -3,6 +3,11 @@
 #import "ATVTableView.h"
 
 @implementation ATVTableSection
+- (id)init
+{
+  [NSException raise:NSInvalidArgumentException format:@"Please use the designated initializer -initWithIdentifier."];
+}
+
 // Designated initializer. Use this one.
 - (id)initWithIdentifier:(NSString *)identifier {
   if (self = [super init])
