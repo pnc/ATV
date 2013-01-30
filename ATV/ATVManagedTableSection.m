@@ -24,12 +24,16 @@ static const NSUInteger NTManagedTableFetchControllerSection = 0;
                                    managedObjectContext:context
                                    sectionNameKeyPath:nil
                                    cacheName:nil];
-  self.fetchedResultsController.delegate = self;
+}
+
+-(void) setFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController {
+  _fetchedResultsController = fetchedResultsController;
+  _fetchedResultsController.delegate = self;
 
   NSError *error;
-  BOOL success = [self.fetchedResultsController performFetch:&error];
-  NSAssert(success, @"Unable to perform fetch for interests: %@", error);
-  [self._tableView reloadData];
+  BOOL success = [_fetchedResultsController performFetch:&error];
+  NSAssert(success, @"Unable to perform fetch: %@", error);
+  [self reloadSectionWithRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Cell source
