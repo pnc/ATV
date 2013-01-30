@@ -79,7 +79,7 @@
 }
 
 - (CGFloat)heightForRowAtIndex:(NSUInteger)index {
-  return 44.0f;
+  return [self._tableView rowHeight];
 }
 
 #pragma mark - Cell selection
