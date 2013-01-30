@@ -124,10 +124,10 @@
   if (tableSection.headerView)
   {
     return tableSection.headerView.bounds.size.height;
-  }
-  else
-  {
+  } else if (tableSection.title) {
     return self.sectionHeaderHeight;
+  } else {
+    return 0.0;
   }
 }
 
