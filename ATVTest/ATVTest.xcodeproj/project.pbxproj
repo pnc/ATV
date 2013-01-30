@@ -25,6 +25,7 @@
 		536FE0B816B831070025549F /* ATVExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536FE0B616B831070025549F /* ATVExampleViewController.xib */; };
 		536FE0BF16B834B80025549F /* ATVMessageSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0BE16B834B80025549F /* ATVMessageSection.m */; };
 		536FE0C216B836530025549F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536FE0C116B836520025549F /* CoreData.framework */; };
+		536FE0EE16B860550025549F /* ATVViewTableSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0ED16B860550025549F /* ATVViewTableSection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,8 @@
 		536FE0BD16B834B80025549F /* ATVMessageSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATVMessageSection.h; sourceTree = "<group>"; };
 		536FE0BE16B834B80025549F /* ATVMessageSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATVMessageSection.m; sourceTree = "<group>"; };
 		536FE0C116B836520025549F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		536FE0EC16B860550025549F /* ATVViewTableSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATVViewTableSection.h; path = ../ATV/ATVViewTableSection.h; sourceTree = "<group>"; };
+		536FE0ED16B860550025549F /* ATVViewTableSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATVViewTableSection.m; path = ../ATV/ATVViewTableSection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,8 @@
 				536FE0AC16B830710025549F /* ATVTableSection_Private.h */,
 				536FE0AD16B830710025549F /* ATVTableSection.h */,
 				536FE0AE16B830710025549F /* ATVTableSection.m */,
+				536FE0EC16B860550025549F /* ATVViewTableSection.h */,
+				536FE0ED16B860550025549F /* ATVViewTableSection.m */,
 			);
 			name = ATV;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				536FE0B316B830810025549F /* ATVTableSection.m in Sources */,
 				536FE0B716B831070025549F /* ATVExampleViewController.m in Sources */,
 				536FE0BF16B834B80025549F /* ATVMessageSection.m in Sources */,
+				536FE0EE16B860550025549F /* ATVViewTableSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
