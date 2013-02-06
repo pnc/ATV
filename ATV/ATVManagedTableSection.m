@@ -114,7 +114,7 @@ static const NSUInteger NTManagedTableFetchControllerSection = 0;
 
     case NSFetchedResultsChangeUpdate:
     {
-      UITableViewCell *cell = [self cellForRowAtIndex:indexPath.row];
+      UITableViewCell *cell = [self cellAtIndex:indexPath.row];
       if (cell)
       {
         [self configureCell:cell atIndex:indexPath.row];
