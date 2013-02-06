@@ -28,12 +28,14 @@ static const NSUInteger NTManagedTableFetchControllerSection = 0;
 
 -(void) setFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController {
   _fetchedResultsController = fetchedResultsController;
-  _fetchedResultsController.delegate = self;
+  if (fetchedResultsController) {
+    _fetchedResultsController.delegate = self;
 
-  NSError *error;
-  BOOL success = [_fetchedResultsController performFetch:&error];
-  NSAssert(success, @"Unable to perform fetch: %@", error);
-  [self reloadSectionWithRowAnimation:UITableViewRowAnimationAutomatic];
+    NSError *error;
+    BOOL success = [_fetchedResultsController performFetch:&error];
+    NSAssert(success, @"Unable to perform fetch: %@", error);
+    [self reloadSectionWithRowAnimation:UITableViewRowAnimationAutomatic];
+  }
 }
 
 #pragma mark - Cell source
