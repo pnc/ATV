@@ -41,9 +41,18 @@
     [self deleteRowsAtIndices:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
   }
   _view = view;
-  self.viewCell.backgroundView = [[UIView alloc] init];
   [self.viewCell.contentView addSubview:view];
+  if (self.showBackground) {
+    self.viewCell.backgroundView = nil;
+  } else {
+    self.viewCell.backgroundView = [[UIView alloc] init];
+  }
   [self endUpdates];
+}
+
+- (void)setShowBackground:(BOOL)showBackground {
+  _showBackground = showBackground;
+  [self setView:self.view];
 }
 
 @end
