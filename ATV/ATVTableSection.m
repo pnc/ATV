@@ -83,6 +83,10 @@
   return [self._tableView rowHeight];
 }
 
+#pragma mark - Editing
+- (BOOL) canEditRowAtIndex:(NSUInteger)index {
+  return NO;
+}
 
 #pragma mark - Cell selection
 

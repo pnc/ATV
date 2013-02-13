@@ -94,11 +94,6 @@
   return [tableSection cellForRowAtIndex:indexPath.row];
 }
 
-- (void) tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-  ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
-  [tableSection didSelectRowAtIndex:indexPath.row];
-}
-
 - (CGFloat) tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
   ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
   return [tableSection heightForRowAtIndex:indexPath.row];
@@ -129,6 +124,20 @@
   return tableSection.headerView;
 }
 
+- (void) tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+  ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
+  [tableSection didSelectRowAtIndex:indexPath.row];
+}
+
+- (void) tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
+  ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
+  [tableSection commitEditingStyle:editingStyle forRowAtIndex:indexPath.row];
+}
+
+- (BOOL) tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath {
+  ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
+  return [tableSection canEditRowAtIndex:indexPath.row];
+}
 
 #pragma mark - Private
 

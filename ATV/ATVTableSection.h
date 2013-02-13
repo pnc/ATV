@@ -36,6 +36,11 @@
 - (id) dequeueReusableCellWithIdentifier:(NSString*)identifier;
 
 
+#pragma mark - Editing
+- (BOOL)canEditRowAtIndex:(NSUInteger)index;
+- (void)commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+             forRowAtIndex:(NSUInteger)index;
+
 #pragma mark - Cell selection
 
 - (void) didSelectRowAtIndex:(NSUInteger)index;
