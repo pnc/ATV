@@ -6,7 +6,7 @@
 // Which section of the fetch controller results to use.
 // This class does not support multiple sections from a single
 // fetch controller at this time.
-static const NSUInteger NTManagedTableFetchControllerSection = 0;
+static const NSUInteger ATVManagedTableFetchControllerSection = 0;
 
 @implementation ATVManagedTableSection
 
@@ -43,8 +43,7 @@ static const NSUInteger NTManagedTableFetchControllerSection = 0;
 {
   NSAssert(self.cellSource, @"You must supply a cell source block.");
   NSAssert(self.configureCell, @"You must supply a configure cell block.");
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:NTManagedTableFetchControllerSection];
-  id object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  id object = [self objectAtIndex:index];
   UITableViewCell *cell = self.cellSource(self, index, object);
   self.configureCell(self, cell, index, object);
   return cell;
@@ -53,20 +52,25 @@ static const NSUInteger NTManagedTableFetchControllerSection = 0;
 -(void) configureCell:(UITableViewCell *)cell atIndex:(NSUInteger)index
 {
   NSAssert(self.configureCell, @"You must supply a configure cell block.");
-  NSIndexPath *path = [NSIndexPath indexPathForRow:index inSection:NTManagedTableFetchControllerSection];
-  id object = [self.fetchedResultsController objectAtIndexPath:path];
-  self.configureCell(self, cell, index, object);
+  self.configureCell(self, cell, index, [self objectAtIndex:index]);
 }
 
 #pragma mark - Data source
+- (id)objectAtIndex:(NSUInteger)index {
+  NSIndexPath *path = [NSIndexPath indexPathForRow:index
+                                         inSection:ATVManagedTableFetchControllerSection];
+  id object = [self.fetchedResultsController objectAtIndexPath:path];
+  return object;
+}
+
 -(NSUInteger) numberOfRows {
-  id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:NTManagedTableFetchControllerSection];
+  id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections]
+                                                  objectAtIndex:ATVManagedTableFetchControllerSection];
   return [sectionInfo numberOfObjects];
 }
 
 -(CGFloat)heightForRowAtIndex:(NSUInteger)index {
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:NTManagedTableFetchControllerSection];
-  id object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  id object = [self objectAtIndex:index];
   if (self.cellHeight) {
     return self.cellHeight(self, index, object);
   } else {
@@ -76,8 +80,7 @@ static const NSUInteger NTManagedTableFetchControllerSection = 0;
 
 #pragma mark - Table events
 -(void) didSelectRowAtIndex:(NSUInteger)index {
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:NTManagedTableFetchControllerSection];
-  id object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  id object = [self objectAtIndex:index];
   if (self.cellSelected) {
     self.cellSelected(self, index, object);
   }
