@@ -2,7 +2,7 @@
 
 @interface ATVMessageSection ()
 
-@property (nonatomic, strong) UITableViewCell *messageCell;
+@property (nonatomic, strong) UITableViewCell* messageCell;
 
 @end
 
@@ -13,7 +13,7 @@
 static CGFloat labelPaddingSides = 40.0;
 static CGFloat labelPaddingTopAndBottom = 20.0;
 
-- (UITableViewCell *)messageCell {
+- (UITableViewCell* )messageCell {
   if (!_messageCell) {
     _messageCell = [[UITableViewCell alloc]
                     initWithStyle:UITableViewCellStyleDefault
@@ -23,28 +23,27 @@ static CGFloat labelPaddingTopAndBottom = 20.0;
   return _messageCell;
 }
 
-- (UITableViewCell *)cellForRowAtIndex:(NSUInteger)index {
+- (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index {
   [self configureCell:self.messageCell atIndex:index];
   return self.messageCell;
 }
 
-- (CGFloat)heightForRowAtIndex:(NSUInteger)index {
+- (CGFloat) heightForRowAtIndex:(NSUInteger)index {
   [self configureCell:self.messageCell atIndex:index];
   [self updateHeight];
   return height;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndex:(NSUInteger)index
-{
+- (void) configureCell:(UITableViewCell*)cell atIndex:(NSUInteger)index {
   self.messageCell.textLabel.text = self.message;
   self.messageCell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
   self.messageCell.textLabel.numberOfLines = 0;
   [self updateHeight];
 }
 
-- (void)updateHeight {
+- (void) updateHeight {
   if (self.messageCell) {
-    UIFont *font = self.messageCell.textLabel.font;
+    UIFont* font = self.messageCell.textLabel.font;
     NSLineBreakMode mode = self.messageCell.textLabel.lineBreakMode;
     CGSize size = CGSizeMake(self.messageCell.frame.size.width - labelPaddingSides,
                              CGFLOAT_MAX);
@@ -55,11 +54,11 @@ static CGFloat labelPaddingTopAndBottom = 20.0;
   }
 }
 
-- (NSUInteger)numberOfRows {
+- (NSUInteger) numberOfRows {
   return 1;
 }
 
-- (void)setMessage:(NSString *)message {
+- (void) setMessage:(NSString*)message {
   _message = message;
 
   [self updateHeight];

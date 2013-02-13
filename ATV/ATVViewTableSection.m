@@ -6,34 +6,33 @@
 
 @implementation ATVViewTableSection
 
-- (UITableViewCell *)viewCell {
+- (UITableViewCell*) viewCell {
   if (!_viewCell) {
     _viewCell = [[UITableViewCell alloc] init];
   }
   return _viewCell;
 }
 
-- (UITableViewCell *)cellForRowAtIndex:(NSUInteger)index {
+- (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index {
   return self.viewCell;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndex:(NSUInteger)index
-{
+- (void) configureCell:(UITableViewCell*)cell atIndex:(NSUInteger)index {
   
 }
 
-- (NSUInteger)numberOfRows {
+- (NSUInteger) numberOfRows {
   return !!self.view ? 1 : 0;
 }
 
-- (CGFloat)heightForRowAtIndex:(NSUInteger)index {
+- (CGFloat) heightForRowAtIndex:(NSUInteger)index {
   if (self.view) {
     return self.view.frame.size.height;
   }
   return 0.0;
 }
 
-- (void)setView:(UIView *)view {
+- (void) setView:(UIView *)view {
   [self beginUpdates];
   if (!_view && view) {
     [self insertRowsAtIndices:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];

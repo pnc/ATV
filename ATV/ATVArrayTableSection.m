@@ -17,44 +17,40 @@
 
 @implementation ATVArrayTableSection
 
--(id) initWithIdentifier:(NSString *)identifier
-{
-  if (self = [super initWithIdentifier:identifier])
-  {
+- (id) initWithIdentifier:(NSString*)identifier {
+  self = [super initWithIdentifier:identifier];
+  if (self) {
     _objects = [NSMutableArray array];
   }
   return self;
 }
 
-- (id)init
-{
-  if (self = [super init])
-  {
+- (id) init {
+  self = [super init];
+  if (self) {
     _objects = [NSMutableArray array];
   }
   return self;
 }
+
 
 #pragma mark - Public API
-- (NSArray *)objects
-{
+
+- (NSArray*) objects {
   return _objects;
 }
 
-- (void)setObjects:(NSArray *)objects
-{
+- (void) setObjects:(NSArray*)objects {
   [self setObjects:objects animated:NO];
 }
 
-- (void)setObjects:(NSArray *)objects animated:(BOOL)animated
-{
+- (void) setObjects:(NSArray*)objects animated:(BOOL)animated {
   UITableViewRowAnimation animation = animated ? UITableViewRowAnimationFade : UITableViewRowAnimationNone;
   _objects = [NSMutableArray arrayWithArray:objects];
   [self reloadSectionWithRowAnimation:animation];
 }
 
-- (void)removeObjectFromObjectsAtIndex:(NSUInteger)index
-{
+- (void) removeObjectFromObjectsAtIndex:(NSUInteger)index {
   [self beginUpdates];
   [self deleteRowsAtIndices:[NSIndexSet indexSetWithIndex:index]
            withRowAnimation:UITableViewRowAnimationTop];
@@ -62,8 +58,7 @@
   [self endUpdates];
 }
 
-- (void)insertObject:(id)object inObjectsAtIndex:(NSUInteger)index
-{
+- (void) insertObject:(id)object inObjectsAtIndex:(NSUInteger)index {
   [self beginUpdates];
   [self insertRowsAtIndices:[NSIndexSet indexSetWithIndex:index]
            withRowAnimation:UITableViewRowAnimationTop];
@@ -71,30 +66,32 @@
   [self endUpdates];
 }
 
+
 #pragma mark - Cell source
--(UITableViewCell *) cellForRowAtIndex:(NSUInteger)index
-{
+
+- (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index {
   NSAssert(self.cellSource, @"You must supply a cell source block.");
   NSAssert(self.configureCell, @"You must supply a configure cell block.");
   id object = [self.objects objectAtIndex:index];
-  UITableViewCell *cell = self.cellSource(self, index, object);
+  UITableViewCell* cell = self.cellSource(self, index, object);
   self.configureCell(self, cell, index, object);
   return cell;
 }
 
--(void) configureCell:(UITableViewCell *)cell atIndex:(NSUInteger)index
-{
+- (void) configureCell:(UITableViewCell*)cell atIndex:(NSUInteger)index {
   NSAssert(self.configureCell, @"You must supply a configure cell block.");
   id object = [self.objects objectAtIndex:index];
   self.configureCell(self, cell, index, object);
 }
 
+
 #pragma mark - Data source
--(NSUInteger) numberOfRows {
+
+- (NSUInteger) numberOfRows {
   return self.objects.count;
 }
 
--(CGFloat)heightForRowAtIndex:(NSUInteger)index {
+- (CGFloat) heightForRowAtIndex:(NSUInteger)index {
   id object = [self.objects objectAtIndex:index];
   if (self.cellHeight) {
     return self.cellHeight(self, index, object);
@@ -104,11 +101,13 @@
 }
 
 #pragma mark - Table events
--(void) didSelectRowAtIndex:(NSUInteger)index {
+
+- (void) didSelectRowAtIndex:(NSUInteger)index {
   id object = [self.objects objectAtIndex:index];
   if (self.cellSelected) {
     self.cellSelected(self, index, object);
   }
 }
+
 
 @end
