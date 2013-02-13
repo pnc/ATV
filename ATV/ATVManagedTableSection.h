@@ -10,4 +10,5 @@
 // retain a reference to the FRC, since this will steal its delegate.
 - (void) setFetchedResultsController:(NSFetchedResultsController*)controller;
 
+- (id) objectAtIndex:(NSUInteger)index;
 @end
