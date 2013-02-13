@@ -5,4 +5,5 @@
 - (NSArray *)objects;
 - (void)setObjects:(NSArray *)objects;
 - (void)setObjects:(NSArray *)objects animated:(BOOL)animated;
+
 @end

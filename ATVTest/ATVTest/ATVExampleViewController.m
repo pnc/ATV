@@ -9,14 +9,13 @@
 
 @implementation ATVExampleViewController
 
-- (ATVTableView *)sectionedTableView {
+- (ATVTableView*) sectionedTableView {
   return (ATVTableView *)self.tableView;
 }
 
-- (void)viewDidLoad
-{
+- (void) viewDidLoad {
   [super viewDidLoad];
-  ATVMessageSection *section = [[ATVMessageSection alloc]
+  ATVMessageSection* section = [[ATVMessageSection alloc]
                                 initWithIdentifier:@"message"];
   section.message = @"Here’s an example of a multi-sourced table view.";
   section.title = nil;
@@ -29,7 +28,7 @@
                                             action:@selector(addToMessage:)];
 }
 
-- (void)addToMessage:(id)sender {
+- (void) addToMessage:(id)sender {
   self.messageSection.message = [self.messageSection.message
                                  stringByAppendingString:@" And here’s a bit more."];
 }
