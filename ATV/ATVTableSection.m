@@ -88,6 +88,11 @@
   return NO;
 }
 
+- (void) commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+              forRowAtIndex:(NSUInteger)index {
+  // Do nothing.
+}
+
 #pragma mark - Cell selection
 
 - (void) didSelectRowAtIndex:(NSUInteger)index {
