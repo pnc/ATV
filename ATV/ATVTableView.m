@@ -4,6 +4,7 @@
 
 @interface ATVTableView ()
 @property (strong) NSMutableArray *sections;
+@property UITableViewCellSeparatorStyle desiredSeparatorStyle;
 @end
 
 @implementation ATVTableView
@@ -28,24 +29,31 @@
   self.sections = [NSMutableArray array];
   self.dataSource = self;
   self.delegate = self;
+  // Trigger our special setter for separatorStyle even if
+  // the user left it as the default. This also updates the
+  // empty view.
+  [self setSeparatorStyle:self.separatorStyle];
 }
 
 - (void) addSection:(ATVTableSection*)section {
   [self addSection:section atIndex:self.sections.count];
+  [self updateEmptyView];
 }
 
 - (void) addSection:(ATVTableSection*)section belowSection:(ATVTableSection*)below {
   NSUInteger index = [self indexForSection:below];
   [self addSection:section atIndex:index + 1];
+  [self updateEmptyView];
 }
 
-- (void)addSection:(ATVTableSection*)section atIndex:(NSUInteger)index {
+- (void) addSection:(ATVTableSection*)section atIndex:(NSUInteger)index {
   section._tableView = self;
   [self beginUpdates];
   [self.sections insertObject:section atIndex:index];
   NSIndexSet* indices = [NSIndexSet indexSetWithIndex:index];
   [self insertSections:indices withRowAnimation:UITableViewRowAnimationAutomatic];
   [self endUpdates];
+  [self updateEmptyView];
 }
 
 - (void) removeSection:(ATVTableSection*)section {
@@ -56,6 +64,7 @@
   [self deleteSections:indices withRowAnimation:UITableViewRowAnimationAutomatic];
   [self endUpdates];
   section._tableView = nil;
+  [self updateEmptyView];
 }
 
 - (void) removeAllSections {
@@ -65,6 +74,7 @@
   [self deleteSections:indices withRowAnimation:UITableViewRowAnimationAutomatic];
   [self.sections removeAllObjects];
   [self endUpdates];
+  [self updateEmptyView];
 }
 
 
@@ -155,6 +165,7 @@
     [paths addObject:path];
   }];
   [self insertRowsAtIndexPaths:paths withRowAnimation:animation];
+  [self updateEmptyView];
 }
 
 - (void) deleteRowsAtIndices:(NSIndexSet*)indices
@@ -166,11 +177,18 @@
     [paths addObject:path];
   }];
   [self deleteRowsAtIndexPaths:paths withRowAnimation:animation];
+  [self updateEmptyView];
 }
 
 - (void) reloadSection:(ATVTableSection*)section withRowAnimation:(UITableViewRowAnimation)animation {
   NSIndexSet* index = [NSIndexSet indexSetWithIndex:[self indexForSection:section]];
   [self reloadSections:index withRowAnimation:animation];
+  [self updateEmptyView];
+}
+
+- (void) endUpdates {
+  [super endUpdates];
+  [self updateEmptyView];
 }
 
 #pragma mark - Converting from indices to table index paths
@@ -185,6 +203,58 @@
   NSUInteger sectionIndex = [self.sections indexOfObject:section];
   NSAssert(NSNotFound != sectionIndex, @"Attempted to determine index of section %@, which is not a section in this table view.", section);
   return sectionIndex;
+}
+
+#pragma mark - Empty view display
+
+- (void) setSeparatorStyle:(UITableViewCellSeparatorStyle)separatorStyle {
+  self.desiredSeparatorStyle = separatorStyle;
+  // Since this setter could be called during decoding, only update
+  // the empty view if it's obvious we have finished initializing.
+  // If we haven't finished, -updateEmptyView will get called as
+  // part of initialization.
+  if (self.sections) {
+    [self updateEmptyView];
+  }
+}
+
+- (void) setEmptyView:(UIView*)emptyView {
+  if (_emptyView && _emptyView.superview) {
+    [_emptyView removeFromSuperview];
+  }
+  _emptyView = emptyView;
+  [self updateEmptyView];
+}
+
+- (void) updateEmptyView {
+  if (self.emptyView && [self isEmpty]) {
+    [super setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    BOOL animate = NO;
+    if (!self.emptyView.superview) {
+      self.emptyView.alpha = 0.0;
+      animate = YES;
+    }
+    [self addSubview:self.emptyView];
+    self.emptyView.frame = self.bounds;
+    if (animate) {
+      [UIView beginAnimations:NULL context:NULL];
+      [UIView setAnimationDuration:0.5];
+      self.emptyView.alpha = 1.0;
+      [UIView commitAnimations];
+    }
+  } else {
+    [super setSeparatorStyle:self.desiredSeparatorStyle];
+    [self.emptyView removeFromSuperview];
+  }
+}
+
+- (BOOL) isEmpty {
+  NSInteger sections = [self numberOfSectionsInTableView:self];
+  NSInteger total = 0;
+  for (NSInteger i = 0; i < sections; i++) {
+    total += [self numberOfRowsInSection:i];
+  }
+  return 0 == total;
 }
 
 @end

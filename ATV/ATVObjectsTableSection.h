@@ -1,6 +1,7 @@
 #import "ATVTableSection.h"
 
 @interface ATVObjectsTableSection : ATVTableSection
+
 @property (copy) UITableViewCell* (^cellSource)(ATVTableSection* section, NSUInteger index, id object);
 @property (copy) CGFloat (^cellHeight)(ATVTableSection* section, NSUInteger index, id object);
 @property (copy) void (^configureCell)(ATVTableSection* section, UITableViewCell* cell, NSUInteger index, id object);

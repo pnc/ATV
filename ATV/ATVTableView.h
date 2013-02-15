@@ -9,6 +9,7 @@
 - (void) removeSection:(ATVTableSection*)section;
 - (void) removeAllSections;
 
+@property (nonatomic) UIView* emptyView;
 
 #pragma mark - Private
 
