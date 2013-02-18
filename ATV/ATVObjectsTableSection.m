@@ -1,4 +1,5 @@
 #import "ATVObjectsTableSection.h"
+#import "ATVTableSection_Private.h"
 
 @implementation ATVObjectsTableSection
 /*
@@ -11,4 +12,14 @@
  
  Ride the abstract train with me.
  */
+
+/*
+ Because every good abstract class deserves to be, well,
+ a little bit less abstract.
+ */
+- (void) setDefaultCellIdentifier:(NSString*)defaultCellIdentifier {
+  NSAssert([self.registeredNibs objectForKey:defaultCellIdentifier], @"You must register a NIB for the default cell identifier");
+  _defaultCellIdentifier = defaultCellIdentifier;
+}
+
 @end
