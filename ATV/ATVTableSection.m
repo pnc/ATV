@@ -18,7 +18,7 @@
 }
 
 - (NSString*) description {
-  return [NSString stringWithFormat:@"<NTTableSection %@>", self.identifier ?: NSStringFromClass(self.class)];
+  return [NSString stringWithFormat:@"<ATVTableSection %@>", self.identifier ?: NSStringFromClass(self.class)];
 }
 
 - (void) setTitle:(NSString*)title {
