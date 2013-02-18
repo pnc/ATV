@@ -56,6 +56,31 @@
   [self updateEmptyView];
 }
 
+- (void) addSection:(ATVTableSection*)section withIdentifierOrder:(NSArray*)expectedSectionOrder {
+  NSInteger expectedSectionOrderIndex = [expectedSectionOrder indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL* stop) {
+    return [section.identifier isEqualToString:obj];
+  }];
+
+  NSAssert(expectedSectionOrderIndex != NSNotFound, @"Expected to find section identifier '%@' in expected section order array", section.identifier);
+
+  // Assume that we will be adding the section at the end
+  // unless can determine that it should be inserted earlier.
+  NSInteger insertionIndex = self.sections.count;
+
+  for (NSInteger i = expectedSectionOrderIndex; i > 0; --i) {
+    NSUInteger existingSectionIndex = [self.sections indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL* stop) {
+      return [section.identifier isEqualToString:((ATVTableSection*)obj).identifier];
+    }];
+    if (existingSectionIndex != NSNotFound) {
+      insertionIndex = existingSectionIndex + 1;
+      break;
+    }
+  }
+
+  [self addSection:section atIndex:insertionIndex];
+}
+
+
 - (void) removeSection:(ATVTableSection*)section {
   NSUInteger sectionIndex = [self indexForSection:section];
   [self beginUpdates];
