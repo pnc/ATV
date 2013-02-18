@@ -2,8 +2,8 @@
 
 @interface ATVArrayTableSection : ATVObjectsTableSection
 
-- (NSArray *)objects;
-- (void)setObjects:(NSArray *)objects;
-- (void)setObjects:(NSArray *)objects animated:(BOOL)animated;
+- (NSArray*)objects;
+- (void)setObjects:(NSArray*)objects;
+- (void)setObjects:(NSArray*)objects animated:(BOOL)animated;
 
 @end

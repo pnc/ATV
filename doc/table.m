@@ -1,23 +1,23 @@
 // Prepare the table section to display story threads in My Interests
-NTArrayTableSection *section = [[NTArrayTableSection alloc] initWithIdentifier:@"my-interests"];
-[section registerNib:@"NTSmallStoryThreadCell" forIdentifier:@"ProfileStoryThread"];
+ATVArrayTableSection* section = [[ATVArrayTableSection alloc] initWithIdentifier:@"my-interests"];
+[section registerNib:@"ATVSmallStoryThreadCell" forIdentifier:@"ProfileStoryThread"];
 section.title = @"My Interests";
-[section setCellSource:^UITableViewCell *(NTTableSection *section, NSUInteger index, id object) {
+[section setCellSource:^UITableViewCell* (ATVTableSection* section, NSUInteger index, id object) {
   return [section dequeueReusableCellWithIdentifier:@"ProfileStoryThread"];
 }];
-[section setConfigureCell:^(NTTableSection *section, UITableViewCell *cell,
+[section setConfigureCell:^(ATVTableSection* section, UITableViewCell* cell,
                             NSUInteger index, id object) {
-  NTProfileStoryThreadTableViewCell *storyCell = (NTProfileStoryThreadTableViewCell *)cell;
+  ATVProfileStoryThreadTableViewCell* storyCell = (ATVProfileStoryThreadTableViewCell* )cell;
   storyCell.roundTop = index == 0;
   storyCell.roundBottom = index == [section numberOfRows] - 1;
   [storyCell useStoryThread:object];
 }];
-[section setCellHeight:^CGFloat(NTTableSection *section, NSUInteger index, id object) {
+[section setCellHeight:^CGFloat(ATVTableSection* section, NSUInteger index, id object) {
   return 67.0;
 }];
-[section setCellSelected:^(NTTableSection *section, NSUInteger index, id object) {
-  NTArrayTableSection *arraySection = (NTArrayTableSection *)section;
-  NSMutableArray *stories = [arraySection mutableArrayValueForKey:@"objects"];
+[section setCellSelected:^(ATVTableSection* section, NSUInteger index, id object) {
+  ATVArrayTableSection* arraySection = (ATVArrayTableSection* )section;
+  NSMutableArray* stories = [arraySection mutableArrayValueForKey:@"objects"];
   [stories removeObjectAtIndex:index];
 }];
 self.myInterestsSection = section;
