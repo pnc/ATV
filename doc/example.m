@@ -3,7 +3,7 @@
 // Each section only has to worry about row indices, not row
 // _and_ section indices.
 
-NTTableView *tableView = …;
+NTTableView* tableView = …;
 
 // ==================================================================
 // Display an array
@@ -11,18 +11,18 @@ NTTableView *tableView = …;
 
 // Show suggested friends, calculated rather than fetched,
 // as the second section.
-NSArray *suggestedFriends = …;
-NTTableViewSection *suggestions = [[NTTableViewArraySection alloc] 
+NSArray* suggestedFriends = …;
+NTTableViewSection* suggestions = [[NTTableViewArraySection alloc] 
                                    initWithObjects:suggestedFriends
                                    cellSource:
-                                   ^(UITableViewCell *cell,
-                                      NSIndexPath *path,
+                                   ^(UITableViewCell* cell,
+                                      NSIndexPath* path,
                                       id object) {
  // Cell is already instantiated / dequeued - if we wanted something
  // more complex, we'd subclass NTTableViewSection
  cell.textLabel.text = [object objectForKey:@"name"];
 }];
-[suggestions setRowSelectedBlock:^(NSIndexPath *path, id object) {
+[suggestions setRowSelectedBlock:^(NSIndexPath* path, id object) {
   NSLog(@"Show me suggested friend: %@", object);
 }];
 [tableView addSection:suggestions];
@@ -38,16 +38,16 @@ NTTableViewSection *suggestions = [[NTTableViewArraySection alloc]
 // ==================================================================
 
 // Configure a static section with action buttons
-NTTableViewSection *actions = [[NTTableViewStaticSection alloc] 
+NTTableViewSection* actions = [[NTTableViewStaticSection alloc] 
                                 initWithCellSource:
-                                     ^(UITableViewCell *cell,
-                                       NSIndexPath *path,
+                                     ^(UITableViewCell* cell,
+                                       NSIndexPath* path,
                                        id info) {
   // Cell is already instantiated / dequeued - if we wanted something
   // more complex, we'd subclass NTTableViewSection
   cell.textLabel.text = [info objectForKey:@"name"];
 }];
-NSDictionary *info = @{ @"name" : @"Facebook" };
+NSDictionary* info = @{ @"name" : @"Facebook" };
 [actions addRowWithInfo:info tapHandler:^{
   NSLog(@"Something with Facebook.");
 }];
@@ -63,8 +63,8 @@ info = @{ @"name" : @"Twitter" };
 
 // Show all of the user's friends in the first table view section,
 // as fetched from Core Data.
-NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
-NTTableViewSection *friends = [[NTTableViewManagedSection alloc] 
+NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
+NTTableViewSection* friends = [[NTTableViewManagedSection alloc] 
                                initWithManagedObjectContext:context
                                fetchRequest:request];
 
@@ -77,7 +77,7 @@ NTTableViewSection *friends = [[NTTableViewManagedSection alloc]
 
 // Assume this a UIView subclass implemented elsewhere
 id profileView = …;
-NTTableViewSection *profile = [[NTTableViewEmbedSection alloc] 
+NTTableViewSection* profile = [[NTTableViewEmbedSection alloc] 
                                initWithView:profileView];
 // Provide the section reference to the displayed view so it can ask
 // for height changes when the size of the profile changes. This must
