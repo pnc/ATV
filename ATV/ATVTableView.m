@@ -145,6 +145,17 @@
   }
 }
 
+- (CGFloat) tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
+  ATVTableSection* tableSection = [self.sections objectAtIndex:section];
+  if (tableSection.footerView) {
+    return tableSection.footerView.bounds.size.height;
+  } else if (tableSection.footerTitle) {
+    return self.sectionFooterHeight;
+  } else {
+    return 0.0;
+  }
+}
+
 - (UIView*) tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
   ATVTableSection* tableSection = [self.sections objectAtIndex:section];
   // If no header view is provided, the table view will generate
@@ -157,6 +168,20 @@
                tableSection.headerView.frame.size.height);
   }
   return tableSection.headerView;
+}
+
+- (UIView*) tableView:(UITableView*)tableView viewForFooterInSection:(NSInteger)section {
+  ATVTableSection* tableSection = [self.sections objectAtIndex:section];
+  // If no header view is provided, the table view will generate
+  // the default system one, so it's safe for this to return nil.
+  if (tableSection.footerView) {
+    tableSection.footerView.frame =
+    CGRectMake(tableSection.footerView.frame.origin.x,
+               tableSection.footerView.frame.origin.y,
+               self.bounds.size.width,
+               tableSection.footerView.frame.size.height);
+  }
+  return tableSection.footerView;
 }
 
 - (void) tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
