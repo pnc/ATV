@@ -8,6 +8,7 @@
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) NSString* footerTitle;
 @property (nonatomic, strong) UIView* headerView;
+@property (nonatomic, strong) UIView* footerView;
 
 // Designated initializer. Use this one.
 - (id) initWithIdentifier:(NSString*)identifier;

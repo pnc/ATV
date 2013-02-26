@@ -42,10 +42,15 @@ static const NSUInteger ATVManagedTableFetchControllerSection = 0;
 #pragma mark - Cell source
 
 - (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index {
-  NSAssert(self.cellSource, @"You must supply a cell source block.");
+  NSAssert(self.cellSource || self.defaultCellIdentifier, @"You must supply a cell source block or default cell identifier.");
   NSAssert(self.configureCell, @"You must supply a configure cell block.");
   id object = [self objectAtIndex:index];
-  UITableViewCell* cell = self.cellSource(self, index, object);
+  UITableViewCell* cell;
+  if (self.cellSource) {
+    cell = self.cellSource(self, index, object);
+  } else if (self.defaultCellIdentifier) {
+    cell = [self dequeueReusableCellWithIdentifier:self.defaultCellIdentifier];
+  }
   self.configureCell(self, cell, index, object);
   return cell;
 }

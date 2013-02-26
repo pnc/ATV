@@ -6,6 +6,7 @@
 
 - (id) init {
   [NSException raise:NSInvalidArgumentException format:@"Please use the designated initializer -initWithIdentifier."];
+  return nil;
 }
 
 // Designated initializer. Use this one.

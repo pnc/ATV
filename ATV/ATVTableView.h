@@ -6,6 +6,7 @@
 
 - (void) addSection:(ATVTableSection*)section;
 - (void) addSection:(ATVTableSection*)section belowSection:(ATVTableSection*)below;
+- (void) addSection:(ATVTableSection*)section atIndex:(NSUInteger)index;
 - (void) removeSection:(ATVTableSection*)section;
 - (void) removeAllSections;
 

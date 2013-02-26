@@ -26,6 +26,7 @@
 		536FE0BF16B834B80025549F /* ATVMessageSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0BE16B834B80025549F /* ATVMessageSection.m */; };
 		536FE0C216B836530025549F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 536FE0C116B836520025549F /* CoreData.framework */; };
 		536FE0EE16B860550025549F /* ATVViewTableSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 536FE0ED16B860550025549F /* ATVViewTableSection.m */; };
+		C493E7AA16DCF0C4004742BC /* ATVOrderedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C493E7A916DCF0C4004742BC /* ATVOrderedTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,9 @@
 		536FE0C116B836520025549F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		536FE0EC16B860550025549F /* ATVViewTableSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATVViewTableSection.h; path = ../ATV/ATVViewTableSection.h; sourceTree = "<group>"; };
 		536FE0ED16B860550025549F /* ATVViewTableSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATVViewTableSection.m; path = ../ATV/ATVViewTableSection.m; sourceTree = "<group>"; };
+		C493E7A816DCF0C4004742BC /* ATVOrderedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATVOrderedTableView.h; path = ../ATV/ATVOrderedTableView.h; sourceTree = "<group>"; };
+		C493E7A916DCF0C4004742BC /* ATVOrderedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATVOrderedTableView.m; path = ../ATV/ATVOrderedTableView.m; sourceTree = "<group>"; };
+		C493E7AB16DD009B004742BC /* ATVTableView_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ATVTableView_Private.h; path = ../ATV/ATVTableView_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,8 +149,11 @@
 				536FE0A516B830710025549F /* ATVManagedTableSection_Private.h */,
 				536FE0A616B830710025549F /* ATVManagedTableSection.h */,
 				536FE0A716B830710025549F /* ATVManagedTableSection.m */,
+				C493E7AB16DD009B004742BC /* ATVTableView_Private.h */,
 				536FE0A816B830710025549F /* ATVTableView.h */,
 				536FE0A916B830710025549F /* ATVTableView.m */,
+				C493E7A816DCF0C4004742BC /* ATVOrderedTableView.h */,
+				C493E7A916DCF0C4004742BC /* ATVOrderedTableView.m */,
 				536FE0AA16B830710025549F /* ATVObjectsTableSection.h */,
 				536FE0AB16B830710025549F /* ATVObjectsTableSection.m */,
 				536FE0AC16B830710025549F /* ATVTableSection_Private.h */,
@@ -234,6 +241,7 @@
 				536FE0B716B831070025549F /* ATVExampleViewController.m in Sources */,
 				536FE0BF16B834B80025549F /* ATVMessageSection.m in Sources */,
 				536FE0EE16B860550025549F /* ATVViewTableSection.m in Sources */,
+				C493E7AA16DCF0C4004742BC /* ATVOrderedTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
