@@ -3,14 +3,14 @@
 #import "ATVTableView.h"
 
 @interface ATVExampleViewController ()
-@property (readonly) ATVTableView *sectionedTableView;
-@property (strong) ATVMessageSection *messageSection;
+@property (readonly) ATVTableView* sectionedTableView;
+@property (strong) ATVMessageSection* messageSection;
 @end
 
 @implementation ATVExampleViewController
 
 - (ATVTableView*) sectionedTableView {
-  return (ATVTableView *)self.tableView;
+  return (ATVTableView*)self.tableView;
 }
 
 - (void) viewDidLoad {

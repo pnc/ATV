@@ -1,16 +1,16 @@
 #import "ATVArrayTableSection.h"
 
 @interface ATVArrayTableSection () {
-  NSMutableArray *_objects;
+  NSMutableArray* _objects;
 }
 @end
 
 // To add and remove objects and get animation, use the KVC mutable array proxy
 // for the "objects" property:
 //
-// [section setCellSelected:^(NTTableSection *section, NSUInteger index, id object) {
-//   NTArrayTableSection *arraySection = (NTArrayTableSection *)section;
-//   NSMutableArray *stories = [arraySection mutableArrayValueForKey:@"objects"];
+// [section setCellSelected:^(ATVTableSection* section, NSUInteger index, id object) {
+//   ATVArrayTableSection* arraySection = (ATVArrayTableSection*)section;
+//   NSMutableArray* stories = [arraySection mutableArrayValueForKey:@"objects"];
 //   // This will automatically animate the row leaving
 //   [stories removeObjectAtIndex:index];
 // }];

@@ -1,7 +1,7 @@
 #import "ATVViewTableSection.h"
 
 @interface ATVViewTableSection ()
-@property (nonatomic, retain) UITableViewCell *viewCell;
+@property (nonatomic, retain) UITableViewCell* viewCell;
 @end
 
 @implementation ATVViewTableSection
@@ -32,7 +32,7 @@
   return 0.0;
 }
 
-- (void) setView:(UIView *)view {
+- (void) setView:(UIView*)view {
   [self beginUpdates];
   if (!_view && view) {
     [self insertRowsAtIndices:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];

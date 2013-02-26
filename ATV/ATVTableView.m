@@ -3,7 +3,7 @@
 #import "ATVTableSection_Private.h"
 
 @interface ATVTableView ()
-@property (strong) NSMutableArray *sections;
+@property (strong) NSMutableArray* sections;
 @property UITableViewCellSeparatorStyle desiredSeparatorStyle;
 @end
 
@@ -120,8 +120,8 @@
   }
 }
 
-- (UIView *)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
-  ATVTableSection *tableSection = [self.sections objectAtIndex:section];
+- (UIView*) tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
+  ATVTableSection* tableSection = [self.sections objectAtIndex:section];
   // If no header view is provided, the table view will generate
   // the default system one, so it's safe for this to return nil.
   if (tableSection.headerView) {
