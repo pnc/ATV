@@ -1,11 +1,7 @@
 #import "ATVTableView.h"
+#import "ATVTableView_Private.h"
 #import "ATVTableSection.h"
 #import "ATVTableSection_Private.h"
-
-@interface ATVTableView ()
-@property (strong) NSMutableArray* sections;
-@property UITableViewCellSeparatorStyle desiredSeparatorStyle;
-@end
 
 @implementation ATVTableView
 
