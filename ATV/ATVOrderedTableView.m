@@ -20,6 +20,10 @@
   NSAssert(self.sectionOrder, @"ATVOrderedTableView requires sectionOrder be set before adding sections.");
   NSAssert(section.identifier, @"Section identifiers are required for all sections in an ATVOrderedTableView.");
 
+  NSAssert((NSNotFound == [self.sections indexOfObjectPassingTest:^BOOL(ATVTableSection* existingSection, NSUInteger idx, BOOL *stop) {
+    return [section.identifier isEqualToString:existingSection.identifier];
+  }]), @"Attempted to add section with identifier '%@', but a section with that identifier already exists", section.identifier);
+
   NSInteger expectedSectionOrderIndex = [self.sectionOrder indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL* stop) {
     return [section.identifier isEqualToString:obj];
   }];
