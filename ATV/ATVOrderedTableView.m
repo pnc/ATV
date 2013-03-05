@@ -26,16 +26,17 @@
 
   NSAssert(expectedSectionOrderIndex != NSNotFound, @"Expected to find section identifier '%@' in section order array.", section.identifier);
 
-  // Assume that we will be adding the section at the end
-  // unless can determine that it should be inserted earlier.
-  NSInteger insertionIndex = self.sections.count;
+  // Assume that we will be adding the section at the beginning
+  // unless can find a preceding section which it should follow.
+  NSInteger insertionIndex = 0;
 
-  for (NSInteger i = expectedSectionOrderIndex; i > 0; --i) {
-    NSUInteger existingSectionIndex = [self.sections indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL* stop) {
-      return [section.identifier isEqualToString:((ATVTableSection*)obj).identifier];
+  for (NSInteger i = expectedSectionOrderIndex; i >= 0; --i) {
+    NSString* precedingSectionIdentifier = self.sectionOrder[i];
+    NSUInteger precedingSectionIndex = [self.sections indexOfObjectPassingTest:^BOOL(ATVTableSection* existingSection, NSUInteger idx, BOOL* stop) {
+      return [precedingSectionIdentifier isEqualToString:existingSection.identifier];
     }];
-    if (existingSectionIndex != NSNotFound) {
-      insertionIndex = existingSectionIndex + 1;
+    if (precedingSectionIndex != NSNotFound) {
+      insertionIndex = precedingSectionIndex + 1;
       break;
     }
   }
