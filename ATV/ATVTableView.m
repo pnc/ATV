@@ -118,8 +118,11 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
     return tableSection.headerView.bounds.size.height;
   } else if (tableSection.title) {
     return self.sectionHeaderHeight;
-  } else {
+  } else if (UITableViewStyleGrouped == tableView.style) {
     return ATVEpsilonFooterHeight;
+  } else {
+    // Use the table view default
+    return 0.0;
   }
 }
 
@@ -129,8 +132,11 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
     return tableSection.footerView.bounds.size.height;
   } else if (tableSection.footerTitle) {
     return self.sectionFooterHeight;
-  } else {
+  } else if (UITableViewStyleGrouped == tableView.style) {
     return ATVEpsilonFooterHeight;
+  } else {
+    // Use the table view default
+    return 0.0;
   }
 }
 
