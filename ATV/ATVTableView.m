@@ -3,6 +3,13 @@
 #import "ATVTableSection.h"
 #import "ATVTableSection_Private.h"
 
+// For some genius reason, iOS checks the CGFloat returned
+// by -tableView:heightForFooterInSection: and -- this is gold --
+// uses the table's "sectionFooterHeight" if the returned value is
+// exactly 0. Thus, we have to use a very small value to prevent this
+// behavior when it's inappropriate (such as when there is no footer text.)
+static const CGFloat ATVEpsilonFooterHeight = 0.001;
+
 @implementation ATVTableView
 
 - (id) init {
@@ -112,7 +119,7 @@
   } else if (tableSection.title) {
     return self.sectionHeaderHeight;
   } else {
-    return 0.0;
+    return ATVEpsilonFooterHeight;
   }
 }
 
@@ -123,7 +130,7 @@
   } else if (tableSection.footerTitle) {
     return self.sectionFooterHeight;
   } else {
-    return 0.0;
+    return ATVEpsilonFooterHeight;
   }
 }
 
