@@ -212,6 +212,17 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   [self updateEmptyView];
 }
 
+- (void) reloadRowsAtIndices:(NSIndexSet*)indices
+                   inSection:(ATVTableSection*)section
+            withRowAnimation:(UITableViewRowAnimation)animation {
+  NSMutableArray* paths = [NSMutableArray array];
+  [indices enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL* stop) {
+    NSIndexPath* path = [self tableIndexPathForSection:section index:idx];
+    [paths addObject:path];
+  }];
+  [self reloadRowsAtIndexPaths:paths withRowAnimation:animation];
+}
+
 - (void) reloadSection:(ATVTableSection*)section withRowAnimation:(UITableViewRowAnimation)animation {
   NSIndexSet* index = [NSIndexSet indexSetWithIndex:[self indexForSection:section]];
   [self reloadSections:index withRowAnimation:animation];
@@ -221,6 +232,12 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
 - (void) endUpdates {
   [super endUpdates];
   [self updateEmptyView];
+}
+
+- (void) deselectRowAtIndex:(NSUInteger)index
+                  inSection:(ATVTableSection*)section animated:(BOOL)animated {
+  NSIndexPath* path = [self tableIndexPathForSection:section index:index];
+  [self deselectRowAtIndexPath:path animated:animated];
 }
 
 #pragma mark - Converting from indices to table index paths

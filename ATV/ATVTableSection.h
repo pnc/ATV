@@ -45,7 +45,7 @@
 #pragma mark - Cell selection
 
 - (void) didSelectRowAtIndex:(NSUInteger)index;
-
+- (void) deselectRowAtIndex:(NSUInteger)index animated:(BOOL)animated;
 
 #pragma mark - Row changes
 
@@ -56,6 +56,8 @@
 - (void) insertRowsAtIndices:(NSIndexSet*)indices
             withRowAnimation:(UITableViewRowAnimation)animation;
 - (void) deleteRowsAtIndices:(NSIndexSet*)indices
+            withRowAnimation:(UITableViewRowAnimation)animation;
+- (void) reloadRowsAtIndices:(NSIndexSet*)indices
             withRowAnimation:(UITableViewRowAnimation)animation;
 - (void) reloadSectionWithRowAnimation:(UITableViewRowAnimation)animation;
 

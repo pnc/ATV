@@ -126,8 +126,19 @@
                       withRowAnimation:animation];
 }
 
-- (void)reloadSectionWithRowAnimation:(UITableViewRowAnimation)animation {
+- (void) reloadRowsAtIndices:(NSIndexSet*)indices
+            withRowAnimation:(UITableViewRowAnimation)animation {
+  [self._tableView reloadRowsAtIndices:indices
+                             inSection:self
+                      withRowAnimation:animation];
+}
+
+- (void) reloadSectionWithRowAnimation:(UITableViewRowAnimation)animation {
   [self._tableView reloadSection:self withRowAnimation:animation];
+}
+
+- (void) deselectRowAtIndex:(NSUInteger)index animated:(BOOL)animated {
+  [self._tableView deselectRowAtIndex:index inSection:self animated:animated];
 }
 
 @end
