@@ -44,6 +44,7 @@
 
 #pragma mark - Cell selection
 
+- (NSUInteger) willSelectAtIndex:(NSUInteger)index;
 - (void) didSelectRowAtIndex:(NSUInteger)index;
 - (void) deselectRowAtIndex:(NSUInteger)index animated:(BOOL)animated;
 

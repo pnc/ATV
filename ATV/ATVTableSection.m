@@ -96,6 +96,10 @@
 
 #pragma mark - Cell selection
 
+- (NSUInteger) willSelectAtIndex:(NSUInteger)index {
+  return index;
+}
+
 - (void) didSelectRowAtIndex:(NSUInteger)index {
   // NOOP.
 }
