@@ -212,6 +212,16 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   [self updateEmptyView];
 }
 
+- (void) moveRowAtIndex:(NSUInteger)oldIndex
+                toIndex:(NSUInteger)newIndex
+              inSection:(ATVTableSection*)section {
+  NSIndexPath* oldPath = [self tableIndexPathForSection:section
+                                                  index:oldIndex];
+  NSIndexPath* newPath = [self tableIndexPathForSection:section
+                                                  index:newIndex];
+  [self moveRowAtIndexPath:oldPath toIndexPath:newPath];
+}
+
 - (void) reloadRowsAtIndices:(NSIndexSet*)indices
                    inSection:(ATVTableSection*)section
             withRowAnimation:(UITableViewRowAnimation)animation {

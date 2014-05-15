@@ -24,6 +24,9 @@
 - (void) deleteRowsAtIndices:(NSIndexSet*)indices
                    inSection:(ATVTableSection*)section
             withRowAnimation:(UITableViewRowAnimation)animation;
+- (void) moveRowAtIndex:(NSUInteger)oldIndex
+                toIndex:(NSUInteger)newIndex
+              inSection:(ATVTableSection*)section;
 - (void) reloadRowsAtIndices:(NSIndexSet*)indices
                    inSection:(ATVTableSection*)section
             withRowAnimation:(UITableViewRowAnimation)animation;

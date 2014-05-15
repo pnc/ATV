@@ -59,6 +59,8 @@
             withRowAnimation:(UITableViewRowAnimation)animation;
 - (void) reloadRowsAtIndices:(NSIndexSet*)indices
             withRowAnimation:(UITableViewRowAnimation)animation;
+- (void) moveRowAtIndex:(NSUInteger)oldIndex
+                toIndex:(NSUInteger)newIndex;
 - (void) reloadSectionWithRowAnimation:(UITableViewRowAnimation)animation;
 
 @end

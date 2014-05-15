@@ -133,6 +133,13 @@
                       withRowAnimation:animation];
 }
 
+- (void) moveRowAtIndex:(NSUInteger)oldIndex
+                toIndex:(NSUInteger)newIndex {
+  [self._tableView moveRowAtIndex:oldIndex
+                          toIndex:newIndex
+                        inSection:self];
+}
+
 - (void) reloadSectionWithRowAnimation:(UITableViewRowAnimation)animation {
   [self._tableView reloadSection:self withRowAnimation:animation];
 }
