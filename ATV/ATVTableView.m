@@ -263,6 +263,13 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   [self deselectRowAtIndexPath:path animated:animated];
 }
 
+- (void) scrollToRowAtIndex:(NSUInteger)index inSection:(ATVTableSection *)section atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated {
+  NSIndexPath* path = [self tableIndexPathForSection:section index:index];
+  [self scrollToRowAtIndexPath:path
+              atScrollPosition:scrollPosition
+                      animated:animated];
+}
+
 #pragma mark - Converting from indices to table index paths
 
 - (NSIndexPath*) tableIndexPathForSection:(ATVTableSection*)section index:(NSUInteger)index {

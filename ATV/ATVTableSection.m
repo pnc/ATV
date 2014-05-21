@@ -84,6 +84,15 @@
   return [self._tableView rowHeight];
 }
 
+#pragma mark - Scrolling
+
+- (void) scrollToRowAtIndex:(NSUInteger)index atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated {
+  [self._tableView scrollToRowAtIndex:index
+                            inSection:self
+                     atScrollPosition:scrollPosition
+                             animated:animated];
+}
+
 #pragma mark - Editing
 - (BOOL) canEditRowAtIndex:(NSUInteger)index {
   return NO;

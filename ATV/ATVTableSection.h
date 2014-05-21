@@ -36,6 +36,9 @@
 // a cell instantiated from the registered nib, if any.
 - (id) dequeueReusableCellWithIdentifier:(NSString*)identifier;
 
+#pragma mark - Scrolling
+
+- (void)scrollToRowAtIndex:(NSUInteger)index atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
 
 #pragma mark - Editing
 - (BOOL)canEditRowAtIndex:(NSUInteger)index;

@@ -32,5 +32,6 @@
             withRowAnimation:(UITableViewRowAnimation)animation;
 - (void) reloadSection:(ATVTableSection*)section withRowAnimation:(UITableViewRowAnimation)animation;
 - (void) deselectRowAtIndex:(NSUInteger)index inSection:(ATVTableSection*)section animated:(BOOL)animated;
+- (void) scrollToRowAtIndex:(NSUInteger)index inSection:(ATVTableSection*)section atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
 
 @end
