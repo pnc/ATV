@@ -104,7 +104,9 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
 
 - (UITableViewCell*) tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
   ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
-  return [tableSection cellForRowAtIndex:indexPath.row];
+  UITableViewCell* cell = [tableSection cellForRowAtIndex:indexPath.row];
+  NSAssert(cell, @"Section %@ failed to return a cell", tableSection);
+  return cell;
 }
 
 - (CGFloat) tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
@@ -195,7 +197,8 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
 
 - (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index inSection:(ATVTableSection*)section {
   NSIndexPath* path = [self tableIndexPathForSection:section index:index];
-  return [self cellForRowAtIndexPath:path];
+  UITableViewCell* cell = [self cellForRowAtIndexPath:path];
+  return cell;
 }
 
 - (void) insertRowsAtIndices:(NSIndexSet*)indices
