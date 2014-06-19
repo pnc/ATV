@@ -157,6 +157,15 @@
   [self._tableView reloadSection:self withRowAnimation:animation];
 }
 
+- (void) selectRowAtIndex:(NSUInteger)index
+                 animated:(BOOL)animated
+           scrollPosition:(UITableViewScrollPosition)scrollPosition {
+  [self._tableView selectRowAtIndex:index
+                          inSection:self
+                           animated:animated
+                     scrollPosition:scrollPosition];
+}
+
 - (void) deselectRowAtIndex:(NSUInteger)index animated:(BOOL)animated {
   [self._tableView deselectRowAtIndex:index inSection:self animated:animated];
 }

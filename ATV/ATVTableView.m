@@ -257,6 +257,16 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   [self updateEmptyView];
 }
 
+- (void) selectRowAtIndex:(NSUInteger)index
+                inSection:(ATVTableSection*)section
+                 animated:(BOOL)animated
+           scrollPosition:(UITableViewScrollPosition)scrollPosition {
+  NSIndexPath* path = [self tableIndexPathForSection:section index:index];
+  [self selectRowAtIndexPath:path
+                    animated:animated
+              scrollPosition:scrollPosition];
+}
+
 - (void) deselectRowAtIndex:(NSUInteger)index
                   inSection:(ATVTableSection*)section animated:(BOOL)animated {
   NSIndexPath* path = [self tableIndexPathForSection:section index:index];

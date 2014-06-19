@@ -49,6 +49,7 @@
 
 - (NSUInteger) willSelectRowAtIndex:(NSUInteger)index;
 - (void) didSelectRowAtIndex:(NSUInteger)index;
+- (void) selectRowAtIndex:(NSUInteger)index animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition;
 - (void) deselectRowAtIndex:(NSUInteger)index animated:(BOOL)animated;
 
 #pragma mark - Row changes
