@@ -41,6 +41,11 @@
   }
   _view = view;
   [self.viewCell.contentView addSubview:view];
+  CGRect frame = view.frame;
+  frame.origin.x = 0;
+  frame.origin.y = 0;
+  frame.size.width = self.viewCell.contentView.bounds.size.width;
+  view.frame = frame;
   if (self.showBackground) {
     self.viewCell.backgroundView = nil;
   } else {
