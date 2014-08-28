@@ -40,12 +40,14 @@
     [self deleteRowsAtIndices:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
   }
   _view = view;
+
   [self.viewCell.contentView addSubview:view];
   CGRect frame = view.frame;
   frame.origin.x = 0;
   frame.origin.y = 0;
   frame.size.width = self.viewCell.contentView.bounds.size.width;
   view.frame = frame;
+  view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
   if (self.showBackground) {
     self.viewCell.backgroundView = nil;
   } else {
