@@ -75,6 +75,9 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   NSRange range = NSMakeRange(0, self.sections.count);
   NSIndexSet* indices = [NSIndexSet indexSetWithIndexesInRange:range];
   [self deleteSections:indices withRowAnimation:UITableViewRowAnimationAutomatic];
+  for (ATVTableSection* section in self.sections) {
+    section._tableView = nil;
+  }
   [self.sections removeAllObjects];
   [self endUpdates];
   [self updateEmptyView];
