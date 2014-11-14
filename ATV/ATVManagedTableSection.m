@@ -32,7 +32,7 @@ static const NSUInteger ATVManagedTableFetchControllerSection = 0;
     _fetchedResultsController.delegate = self;
 
     NSError* error;
-    BOOL success = [_fetchedResultsController performFetch:&error];
+    __unused BOOL success = [_fetchedResultsController performFetch:&error];
     NSAssert(success, @"Unable to perform fetch: %@", error);
     [self reloadSectionWithRowAnimation:UITableViewRowAnimationAutomatic];
   }
