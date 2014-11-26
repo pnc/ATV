@@ -22,7 +22,10 @@
 
 - (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index;
 - (void) configureCell:(UITableViewCell*)cell atIndex:(NSUInteger)index;
+// This takes a nib name, not a nib. Sorry for the confusing API.
 - (void) registerNib:(NSString*)nibName forIdentifier:(NSString*)identifier;
+// This is the one you want to use.
+- (void) registerNib:(UINib*)nib forCellReuseIdentifier:(NSString*)identifier;
 
 
 #pragma mark - Cell position and queueing

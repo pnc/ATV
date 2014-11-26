@@ -48,6 +48,10 @@
   [self.registeredNibs setObject:nibName forKey:identifier];
 }
 
+- (void) registerNib:(UINib*)nib forCellReuseIdentifier:(NSString*)identifier {
+  [self.registeredNibs setObject:nib forKey:identifier];
+}
+
 - (NSUInteger) numberOfRows {
   return 0;
 }
@@ -59,10 +63,18 @@
 // a cell instantiated from the registered nib, if any.
 - (id) dequeueReusableCellWithIdentifier:(NSString*)identifier {
   UITableViewCell* cell = [self._tableView dequeueReusableCellWithIdentifier:identifier];
-  NSString* registeredNib = [self.registeredNibs objectForKey:identifier];
+  id registeredNib = [self.registeredNibs objectForKey:identifier];
   if (!cell && registeredNib) {
-    UINib* nib = [UINib nibWithNibName:registeredNib bundle:nil];
-    cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    if ([registeredNib isKindOfClass:[UINib class]]) {
+      cell = [[registeredNib instantiateWithOwner:nil options:nil]
+              objectAtIndex:0];
+    } else if ([registeredNib isKindOfClass:[NSString class]]) {
+      UINib* nib = [UINib nibWithNibName:registeredNib bundle:nil];
+      cell = [[nib instantiateWithOwner:nil options:nil] objectAtIndex:0];
+    } else {
+      NSAssert(NO, @"Unexpected nib type for cell reuse identifier %@: %@",
+               identifier, registeredNib);
+    }
   }
   return cell;
 }
