@@ -4,6 +4,8 @@
 
 @interface ATVTableView : UITableView <UITableViewDelegate, UITableViewDataSource>
 
+@property BOOL heightCompatibilityMode;
+
 - (void) addSection:(ATVTableSection*)section;
 - (void) addSection:(ATVTableSection*)section belowSection:(ATVTableSection*)below;
 - (void) addSection:(ATVTableSection*)section atIndex:(NSUInteger)index;

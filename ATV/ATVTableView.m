@@ -3,11 +3,14 @@
 #import "ATVTableSection.h"
 #import "ATVTableSection_Private.h"
 
-// For some genius reason, iOS checks the CGFloat returned
+// In older iOSes, UITableView checks the CGFloat returned
 // by -tableView:heightForFooterInSection: and -- this is gold --
 // uses the table's "sectionFooterHeight" if the returned value is
 // exactly 0. Thus, we have to use a very small value to prevent this
 // behavior when it's inappropriate (such as when there is no footer text.)
+// This behavior has been standarized in newer versions using
+// UITableViewAutomaticDimension, so we no longer have to resort to hacks.
+// See the heightCompatibilityMode setting.
 static const CGFloat ATVEpsilonFooterHeight = 0.001;
 
 @implementation ATVTableView
@@ -36,6 +39,10 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   // the user left it as the default. This also updates the
   // empty view.
   [self setSeparatorStyle:self.separatorStyle];
+  // Before UITableViewAutomaticDimension existed, ATVTableView
+  // tried to be smart. Instead of breaking API, this behavior is opt-out.
+  // It's on by default until a future version.
+  self.heightCompatibilityMode = YES;
 }
 
 - (void) addSection:(ATVTableSection*)section {
@@ -119,27 +126,35 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
 
 - (CGFloat) tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
   ATVTableSection* tableSection = [self.sections objectAtIndex:section];
-  if (tableSection.headerView) {
-    return tableSection.headerView.bounds.size.height;
-  } else if (tableSection.title) {
-    return self.sectionHeaderHeight;
+  if (self.heightCompatibilityMode) {
+    if (tableSection.headerView) {
+      return tableSection.headerView.bounds.size.height;
+    } else if (tableSection.title) {
+      return self.sectionHeaderHeight;
+    } else {
+      // Use the table view default
+      return 0.0;
+    }
   } else {
-    // Use the table view default
-    return 0.0;
+    return UITableViewAutomaticDimension;
   }
 }
 
 - (CGFloat) tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
   ATVTableSection* tableSection = [self.sections objectAtIndex:section];
-  if (tableSection.footerView) {
-    return tableSection.footerView.bounds.size.height;
-  } else if (tableSection.footerTitle) {
-    return self.sectionFooterHeight;
-  } else if (UITableViewStyleGrouped == tableView.style) {
-    return ATVEpsilonFooterHeight;
+  if (self.heightCompatibilityMode) {
+    if (tableSection.footerView) {
+      return tableSection.footerView.bounds.size.height;
+    } else if (tableSection.footerTitle) {
+      return self.sectionFooterHeight;
+    } else if (UITableViewStyleGrouped == tableView.style) {
+      return ATVEpsilonFooterHeight;
+    } else {
+      // Use the table view default
+      return 0.0;
+    }
   } else {
-    // Use the table view default
-    return 0.0;
+    return UITableViewAutomaticDimension;
   }
 }
 
