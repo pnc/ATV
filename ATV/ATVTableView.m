@@ -211,6 +211,11 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   return [tableSection canEditRowAtIndex:indexPath.row];
 }
 
+- (void) tableView:(UITableView*)tableView willDisplayCell:(UITableViewCell*)cell forRowAtIndexPath:(NSIndexPath*)indexPath {
+  ATVTableSection* tableSection = [self.sections objectAtIndex:indexPath.section];
+  [tableSection willDisplayCell:cell forRowAtIndex:indexPath.row];
+}
+
 #pragma mark - Private
 
 - (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index inSection:(ATVTableSection*)section {

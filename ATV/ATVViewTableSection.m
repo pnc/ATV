@@ -39,6 +39,8 @@
   } else if (_view && !view) {
     [self deleteRowsAtIndices:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
   }
+  [_view removeFromSuperview];
+
   _view = view;
 
   [self.viewCell.contentView addSubview:view];
@@ -56,7 +58,14 @@
   [self endUpdates];
 }
 
-- (void)setShowBackground:(BOOL)showBackground {
+- (void) willDisplayCell:(UITableViewCell*)cell forRowAtIndex:(NSUInteger)index {
+  if (!self.showBackground) {
+    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundView = nil;
+  }
+}
+
+- (void) setShowBackground:(BOOL)showBackground {
   _showBackground = showBackground;
   [self setView:self.view];
 }

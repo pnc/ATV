@@ -55,6 +55,10 @@
 - (void) selectRowAtIndex:(NSUInteger)index animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition;
 - (void) deselectRowAtIndex:(NSUInteger)index animated:(BOOL)animated;
 
+#pragma mark - Appearance
+
+- (void) willDisplayCell:(UITableViewCell*)cell forRowAtIndex:(NSUInteger)index;
+
 #pragma mark - Row changes
 
 // Methods for subclasses to indicate changes as though they're working with a table view.

@@ -125,6 +125,8 @@
   // NOOP.
 }
 
+- (void) willDisplayCell:(UITableViewCell*)cell forRowAtIndex:(NSUInteger)index {
+}
 
 #pragma mark - Row changes
 
