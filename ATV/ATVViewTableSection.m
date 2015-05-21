@@ -6,6 +6,13 @@
 
 @implementation ATVViewTableSection
 
+- (id)initWithIdentifier:(NSString *)identifier {
+  if (self = [super initWithIdentifier:identifier]) {
+    self.showBackground = YES;
+  }
+  return self;
+}
+
 - (UITableViewCell*) viewCell {
   if (!_viewCell) {
     _viewCell = [[UITableViewCell alloc] init];
