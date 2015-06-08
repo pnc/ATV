@@ -136,7 +136,7 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
       return 0.0;
     }
   } else {
-    return UITableViewAutomaticDimension;
+    return [tableSection headerHeight];
   }
 }
 
@@ -154,7 +154,7 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
       return 0.0;
     }
   } else {
-    return UITableViewAutomaticDimension;
+    return [tableSection footerHeight];
   }
 }
 

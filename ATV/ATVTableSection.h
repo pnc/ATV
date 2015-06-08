@@ -39,6 +39,11 @@
 // a cell instantiated from the registered nib, if any.
 - (id) dequeueReusableCellWithIdentifier:(NSString*)identifier;
 
+#pragma mark - Header and footer
+
+- (CGFloat) headerHeight;
+- (CGFloat) footerHeight;
+
 #pragma mark - Scrolling
 
 - (void)scrollToRowAtIndex:(NSUInteger)index atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;

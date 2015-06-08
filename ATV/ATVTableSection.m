@@ -96,6 +96,24 @@
   return [self._tableView rowHeight];
 }
 
+#pragma mark - Header and footer
+
+- (CGFloat) headerHeight {
+  if (self.headerView) {
+    return CGRectGetHeight(self.headerView.frame);
+  } else {
+    return UITableViewAutomaticDimension;
+  }
+}
+
+- (CGFloat) footerHeight {
+  if (self.footerView) {
+    return CGRectGetHeight(self.footerView.frame);
+  } else {
+    return UITableViewAutomaticDimension;
+  }
+}
+
 #pragma mark - Scrolling
 
 - (void) scrollToRowAtIndex:(NSUInteger)index atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated {
