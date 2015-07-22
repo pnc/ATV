@@ -31,6 +31,20 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   return self;
 }
 
+- (instancetype) initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    [self setup];
+  }
+  return self;
+}
+
+- (instancetype) initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
+  if (self = [super initWithFrame:frame style:style]) {
+    [self setup];
+  }
+  return self;
+}
+
 - (void) setup {
   self.sections = [NSMutableArray array];
   self.dataSource = self;
@@ -46,42 +60,62 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
 }
 
 - (void) addSection:(ATVTableSection*)section {
-  [self addSection:section atIndex:self.sections.count];
-  [self updateEmptyView];
+  [self addSection:section withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void) addSection:(ATVTableSection*)section belowSection:(ATVTableSection*)below {
-  NSUInteger index = [self indexForSection:below];
-  [self addSection:section atIndex:index + 1];
-  [self updateEmptyView];
+  [self addSection:section belowSection:below withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void) addSection:(ATVTableSection*)section atIndex:(NSUInteger)index {
+  [self addSection:section atIndex:index withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void) removeSection:(ATVTableSection*)section {
+  [self removeSection:section withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void) removeAllSections {
+  [self removeAllSectionsWithRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void) addSection:(ATVTableSection*)section withRowAnimation:(UITableViewRowAnimation)animation {
+  [self addSection:section atIndex:self.sections.count withRowAnimation:animation];
+  [self updateEmptyView];
+}
+
+- (void) addSection:(ATVTableSection*)section belowSection:(ATVTableSection*)below withRowAnimation:(UITableViewRowAnimation)animation {
+  NSUInteger index = [self indexForSection:below];
+  [self addSection:section atIndex:index + 1 withRowAnimation:animation];
+  [self updateEmptyView];
+}
+
+- (void) addSection:(ATVTableSection*)section atIndex:(NSUInteger)index withRowAnimation:(UITableViewRowAnimation)animation {
   section._tableView = self;
   [self beginUpdates];
   [self.sections insertObject:section atIndex:index];
   NSIndexSet* indices = [NSIndexSet indexSetWithIndex:index];
-  [self insertSections:indices withRowAnimation:UITableViewRowAnimationAutomatic];
+  [self insertSections:indices withRowAnimation:animation];
   [self endUpdates];
   [self updateEmptyView];
 }
 
-- (void) removeSection:(ATVTableSection*)section {
+- (void) removeSection:(ATVTableSection*)section withRowAnimation:(UITableViewRowAnimation)animation {
   NSUInteger sectionIndex = [self indexForSection:section];
   [self beginUpdates];
   [self.sections removeObjectAtIndex:sectionIndex];
   NSIndexSet* indices = [NSIndexSet indexSetWithIndex:sectionIndex];
-  [self deleteSections:indices withRowAnimation:UITableViewRowAnimationAutomatic];
+  [self deleteSections:indices withRowAnimation:animation];
   [self endUpdates];
   section._tableView = nil;
   [self updateEmptyView];
 }
 
-- (void) removeAllSections {
+- (void) removeAllSectionsWithRowAnimation:(UITableViewRowAnimation)animation {
   [self beginUpdates];
   NSRange range = NSMakeRange(0, self.sections.count);
   NSIndexSet* indices = [NSIndexSet indexSetWithIndexesInRange:range];
-  [self deleteSections:indices withRowAnimation:UITableViewRowAnimationAutomatic];
+  [self deleteSections:indices withRowAnimation:animation];
   for (ATVTableSection* section in self.sections) {
     section._tableView = nil;
   }

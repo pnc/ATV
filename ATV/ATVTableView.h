@@ -12,6 +12,16 @@
 - (void) removeSection:(ATVTableSection*)section;
 - (void) removeAllSections;
 
+- (void) addSection:(ATVTableSection*)section
+   withRowAnimation:(UITableViewRowAnimation)animation;
+- (void) addSection:(ATVTableSection*)section belowSection:(ATVTableSection*)below
+   withRowAnimation:(UITableViewRowAnimation)animation;
+- (void) addSection:(ATVTableSection*)section atIndex:(NSUInteger)index
+   withRowAnimation:(UITableViewRowAnimation)animation;
+- (void) removeSection:(ATVTableSection*)section
+      withRowAnimation:(UITableViewRowAnimation)animation;
+- (void) removeAllSectionsWithRowAnimation:(UITableViewRowAnimation)animation;
+
 @property (nonatomic, strong) UIView* emptyView;
 
 #pragma mark - Private
