@@ -394,6 +394,11 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   }
 }
 
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  [self updateEmptyView];
+}
+
 - (BOOL) isEmpty {
   NSInteger sections = [self numberOfSectionsInTableView:self];
   NSInteger total = 0;
