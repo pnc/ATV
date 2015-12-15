@@ -23,6 +23,7 @@
 - (void) removeAllSectionsWithRowAnimation:(UITableViewRowAnimation)animation;
 
 @property (nonatomic, strong) UIView* emptyView;
+@property (nonatomic) BOOL emptyViewHonorsContentInset;
 
 #pragma mark - Private
 

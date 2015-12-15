@@ -381,7 +381,11 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
       animate = YES;
     }
     [self addSubview:self.emptyView];
-    self.emptyView.frame = self.bounds;
+    CGRect frame = self.bounds;
+    if (self.emptyViewHonorsContentInset) {
+      frame.origin.y = 0;
+    }
+    self.emptyView.frame = frame;
     if (animate) {
       [UIView beginAnimations:NULL context:NULL];
       [UIView setAnimationDuration:0.5];
