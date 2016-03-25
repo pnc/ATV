@@ -340,15 +340,42 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
 #pragma mark - Converting from indices to table index paths
 
 - (NSIndexPath*) tableIndexPathForSection:(ATVTableSection*)section index:(NSUInteger)index {
-  NSUInteger sectionIndex = [self indexForSection:section];
-  return [NSIndexPath indexPathForRow:index inSection:sectionIndex];
+  return [self tableIndexPathForSection:section index:index mustExist:YES];
+}
+
+- (NSIndexPath*) tableIndexPathForSection:(ATVTableSection*)section index:(NSUInteger)index mustExist:(BOOL)mustExist {
+  NSUInteger sectionIndex;
+  if (mustExist) {
+    sectionIndex = [self indexForSection:section];
+  } else {
+    sectionIndex = [self safeIndexForSection:section];
+  }
+
+  if (NSNotFound != sectionIndex) {
+    return [NSIndexPath indexPathForRow:index inSection:sectionIndex];
+  } else {
+    return nil;
+  }
 }
 
 - (NSUInteger) indexForSection:(ATVTableSection*)section {
   NSAssert(section, @"Cannot convert an index path from a null section.");
-  NSUInteger sectionIndex = [self.sections indexOfObject:section];
+  if (!section) {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"Cannot convert an index path from a null section."];
+  }
+  NSUInteger sectionIndex = [self safeIndexForSection:section];
   NSAssert(NSNotFound != sectionIndex, @"Attempted to determine index of section %@, which is not a section in this table view.", section);
+  if (NSNotFound == sectionIndex) {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"Attempted to determine index of section %@, which is not a section in this table view: %@", section, self.sections];
+  }
   return sectionIndex;
+}
+
+// Use this version if you plan to handle NSNotFound yourself.
+- (NSUInteger) safeIndexForSection:(ATVTableSection*)section {
+  return [self.sections indexOfObject:section];
 }
 
 #pragma mark - Empty view display

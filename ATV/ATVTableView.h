@@ -28,8 +28,11 @@
 #pragma mark - Private
 
 - (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index inSection:(ATVTableSection*)section;
-// Return the index path in the table for the index path in the given section object.
+// Return the index path in the table for the index path in the given section object. Raises an exception if the
+// section is nil or not in the table view if mustExist is true (the default.)
 - (NSIndexPath*) tableIndexPathForSection:(ATVTableSection*)section index:(NSUInteger)index;
+// Use this version if you plan to handle nil.
+- (NSIndexPath*) tableIndexPathForSection:(ATVTableSection*)section index:(NSUInteger)index mustExist:(BOOL)mustExist;
 
 - (void) insertRowsAtIndices:(NSIndexSet*)indices
                    inSection:(ATVTableSection*)section
