@@ -1,7 +1,7 @@
 #import "ATVArrayTableSection.h"
 
 @interface ATVArrayTableSection () {
-  NSMutableArray* _objects;
+  NSArray* _objects;
 }
 @end
 
@@ -33,7 +33,6 @@
   return self;
 }
 
-
 #pragma mark - Public API
 
 - (NSArray*) objects {
@@ -45,27 +44,103 @@
 }
 
 - (void) setObjects:(NSArray*)objects animated:(BOOL)animated {
-  UITableViewRowAnimation animation = animated ? UITableViewRowAnimationFade : UITableViewRowAnimationNone;
-  _objects = [NSMutableArray arrayWithArray:objects];
-  [self reloadSectionWithRowAnimation:animation];
-}
+  UITableViewRowAnimation insertAnimation = animated ? UITableViewRowAnimationTop : UITableViewRowAnimationNone;
+  UITableViewRowAnimation deleteAnimation = animated ? UITableViewRowAnimationBottom : UITableViewRowAnimationNone;
 
-- (void) removeObjectFromObjectsAtIndex:(NSUInteger)index {
+  if (!_objects) {
+    _objects = objects;
+    [self reloadSectionWithRowAnimation:UITableViewRowAnimationNone];
+    return;
+  }
+
+  NSArray *oldObjects = _objects;
+  _objects = objects; // in case the table view asks during updates
   [self beginUpdates];
-  [self deleteRowsAtIndices:[NSIndexSet indexSetWithIndex:index]
-           withRowAnimation:UITableViewRowAnimationTop];
-  [_objects removeObjectAtIndex:index];
+
+  // Record the previous index location of each object. We keep an array
+  // in case the same object appears more than once.
+  NSMutableDictionary <id, NSMutableArray <NSNumber *> *> *oldIndexes = nil;
+  if (self.objectsSupportEquality) {
+    oldIndexes = [NSMutableDictionary dictionary];
+  } else {
+    // We use an NSMapTable so that objects don't have to implement NSCopying.
+    // Headers say the default for string is NSPointerFunctionsObjectPersonality,
+    // which is what we want.
+    // We cast since there's no map/dictionary superclass or protocol.
+    oldIndexes = (id)[NSMapTable
+                      mapTableWithKeyOptions:NSMapTableStrongMemory
+                      valueOptions:NSMapTableStrongMemory];
+  }
+
+  // Build a map of (object) -> [old position].
+  // If the same object appears more than once, it'll be
+  //                (object) -> [old position 1, old position 2, ...]
+  // We'll use this to figure out the previous location of each object,
+  // if it's not a new entry.
+  for (int i = 0; i < oldObjects.count; i++) {
+    id item = [oldObjects objectAtIndex:i];
+    NSMutableArray *positions = [oldIndexes objectForKey:item];
+    if (!positions) {
+      positions = [NSMutableArray array];
+    }
+    [positions addObject:@(i)];
+    [oldIndexes setObject:positions forKey:item];
+  }
+
+  for (int i = 0; i < objects.count; i++) {
+    id item = [objects objectAtIndex:i];
+    NSMutableArray *positions = [oldIndexes objectForKey:item];
+    NSNumber *oldIndex = nil;
+    if (positions.count > 0) {
+      // Without loss of generality, assume this duplicate was the first. This
+      // keeps duplicates from swapping places needlessly.
+      oldIndex = [positions objectAtIndex:0];
+      [positions removeObjectAtIndex:0];
+    } else {
+      [oldIndexes removeObjectForKey:item];
+    }
+
+    NSNumber *newIndex = @(i);
+    if (oldIndex) {
+      if ([oldIndex isEqual:newIndex]) {
+        // Compare the backing values and perform this update
+        // only if the object has changed.
+        BOOL needsRefresh = NO;
+        id oldObject = [oldObjects objectAtIndex:[oldIndex unsignedIntegerValue]];
+        id newObject = [objects objectAtIndex:[newIndex unsignedIntegerValue]];
+        if (self.objectsSupportEquality) {
+          needsRefresh = ![oldObject isEqual:newObject];
+        } else {
+          needsRefresh = oldObject != newObject;
+        }
+
+        if (needsRefresh) {
+          UITableViewCell *cell = [self cellAtIndex:[oldIndex unsignedIntegerValue]];
+          if (cell) {
+            // Cell is visible, repaint it
+            [self configureCell:cell atIndex:[oldIndex unsignedIntegerValue]];
+          } else {
+            // Cell is not visible, reload it
+            [self reloadRowsAtIndices:[NSIndexSet indexSetWithIndex:[oldIndex unsignedIntegerValue]] withRowAnimation:UITableViewRowAnimationNone];
+          }
+        }
+      } else {
+        [self moveRowAtIndex:[oldIndex unsignedIntegerValue] toIndex:[newIndex unsignedIntegerValue]];
+      }
+    } else {
+      [self insertRowsAtIndices:[NSIndexSet indexSetWithIndex:[newIndex unsignedIntegerValue]] withRowAnimation:insertAnimation];
+    }
+  }
+  NSMutableIndexSet *deleted = [NSMutableIndexSet new];
+  for (id item in oldIndexes) {
+    NSArray <NSNumber *> *indexes = [oldIndexes objectForKey:item];
+    for (NSNumber *index in indexes) {
+      [deleted addIndex:[index unsignedIntegerValue]];
+    }
+  }
+  [self deleteRowsAtIndices:deleted withRowAnimation:deleteAnimation];
   [self endUpdates];
 }
-
-- (void) insertObject:(id)object inObjectsAtIndex:(NSUInteger)index {
-  [self beginUpdates];
-  [self insertRowsAtIndices:[NSIndexSet indexSetWithIndex:index]
-           withRowAnimation:UITableViewRowAnimationTop];
-  [_objects insertObject:object atIndex:index];
-  [self endUpdates];
-}
-
 
 #pragma mark - Cell source
 

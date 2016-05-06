@@ -1,5 +1,6 @@
 #import "ATVAppDelegate.h"
 #import "ATVExampleViewController.h"
+#import "ATVExampleArrayViewController.h"
 
 @implementation ATVAppDelegate
 
@@ -7,7 +8,7 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
-  UIViewController* example = [[ATVExampleViewController alloc] init];
+  UIViewController* example = [[ATVExampleArrayViewController alloc] init];
   self.window.rootViewController = [[UINavigationController alloc]
                                     initWithRootViewController:example];
   [self.window makeKeyAndVisible];
