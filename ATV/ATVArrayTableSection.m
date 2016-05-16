@@ -110,7 +110,7 @@
         id newObject = [objects objectAtIndex:[newIndex unsignedIntegerValue]];
         if (self.objectsSupportEquality) {
           needsRefresh = ![oldObject isEqual:newObject];
-        } else if (self.objectsAreImmutable) {
+        } else if (!self.objectsAreMutable) {
           needsRefresh = oldObject != newObject;
         } else {
           needsRefresh = YES;
