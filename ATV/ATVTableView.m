@@ -124,6 +124,43 @@ static const CGFloat ATVEpsilonFooterHeight = 0.001;
   [self updateEmptyView];
 }
 
+#pragma mark - Deferred updates
+
+- (void)setWillPerformUpdates {
+  if (self.window) {
+    if (!self.willPerformUpdates) {
+      self.willPerformUpdates = YES;
+      [self performSelector:@selector(performUpdates) withObject:nil afterDelay:0.0];
+    }
+  }
+}
+
+- (void)didMoveToWindow {
+  [super didMoveToWindow];
+  [self performUpdatesAnimated:NO];
+}
+
+- (void)performUpdates {
+  [self performUpdatesAnimated:YES];
+}
+
+- (void)performUpdatesAnimated:(BOOL)animated {
+  NSMutableArray *toUpdate = [NSMutableArray array];
+  for (ATVTableSection *section in self.sections) {
+    if ([section needsToPerformUpdates]) {
+      [toUpdate addObject:section];
+    }
+  }
+  if (toUpdate.count > 0) {
+    [self beginUpdates];
+    for (ATVTableSection *section in toUpdate) {
+      [section performUpdatesAnimated:animated];
+      NSAssert(![section needsToPerformUpdates], @"Section %@ still needs to perform updates after updating, did you forget to call [super performUpdates]?", self);
+    }
+    [self endUpdates];
+  }
+  self.willPerformUpdates = NO;
+}
 
 #pragma mark - Table view data source
 
