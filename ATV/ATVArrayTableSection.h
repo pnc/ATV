@@ -17,5 +17,6 @@
 
 - (UITableViewRowAnimation)animationForInsertingObject:(id)object atIndex:(NSUInteger)index;
 - (UITableViewRowAnimation)animationForDeletingObject:(id)object atIndex:(NSUInteger)index;
+- (id)uniqueIdentifierForObject:(id)object;
 
 @end
