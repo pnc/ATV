@@ -44,9 +44,6 @@
 }
 
 - (void) setObjects:(NSArray*)objects animated:(BOOL)animated {
-  UITableViewRowAnimation insertAnimation = animated ? UITableViewRowAnimationTop : UITableViewRowAnimationNone;
-  UITableViewRowAnimation deleteAnimation = animated ? UITableViewRowAnimationBottom : UITableViewRowAnimationNone;
-
   if (!_objects) {
     _objects = objects;
     [self reloadSectionWithRowAnimation:UITableViewRowAnimationNone];
@@ -130,6 +127,8 @@
         [self moveRowAtIndex:[oldIndex unsignedIntegerValue] toIndex:[newIndex unsignedIntegerValue]];
       }
     } else {
+      UITableViewRowAnimation insertAnimation = animated ?
+      [self animationForInsertingObject:item atIndex:[newIndex unsignedIntegerValue]] : UITableViewRowAnimationNone;
       [self insertRowsAtIndices:[NSIndexSet indexSetWithIndex:[newIndex unsignedIntegerValue]] withRowAnimation:insertAnimation];
     }
   }
@@ -137,11 +136,22 @@
   for (id item in oldIndexes) {
     NSArray <NSNumber *> *indexes = [oldIndexes objectForKey:item];
     for (NSNumber *index in indexes) {
-      [deleted addIndex:[index unsignedIntegerValue]];
+      id item = [oldObjects objectAtIndex:[index unsignedIntegerValue]];
+      UITableViewRowAnimation deleteAnimation = animated ?
+      [self animationForDeletingObject:item atIndex:[index unsignedIntegerValue]] : UITableViewRowAnimationNone;
+      [self deleteRowsAtIndices:[NSIndexSet indexSetWithIndex:[index unsignedIntegerValue]]
+               withRowAnimation:deleteAnimation];
     }
   }
-  [self deleteRowsAtIndices:deleted withRowAnimation:deleteAnimation];
   [self endUpdates];
+}
+
+- (UITableViewRowAnimation)animationForInsertingObject:(id)object atIndex:(NSUInteger)index {
+  return UITableViewRowAnimationTop;
+}
+
+- (UITableViewRowAnimation)animationForDeletingObject:(id)object atIndex:(NSUInteger)index {
+  return UITableViewRowAnimationBottom;
 }
 
 #pragma mark - Cell source
