@@ -44,9 +44,6 @@
 }
 
 - (void) setObjects:(NSArray*)objects animated:(BOOL)animated {
-  UITableViewRowAnimation insertAnimation = animated ? UITableViewRowAnimationTop : UITableViewRowAnimationNone;
-  UITableViewRowAnimation deleteAnimation = animated ? UITableViewRowAnimationBottom : UITableViewRowAnimationNone;
-
   if (!_objects) {
     _objects = objects;
     [self reloadSectionWithRowAnimation:UITableViewRowAnimationNone];
@@ -79,17 +76,19 @@
   // if it's not a new entry.
   for (int i = 0; i < oldObjects.count; i++) {
     id item = [oldObjects objectAtIndex:i];
-    NSMutableArray *positions = [oldIndexes objectForKey:item];
+    id identifier = [self uniqueIdentifierForObject:item];
+    NSMutableArray *positions = [oldIndexes objectForKey:identifier];
     if (!positions) {
       positions = [NSMutableArray array];
     }
     [positions addObject:@(i)];
-    [oldIndexes setObject:positions forKey:item];
+    [oldIndexes setObject:positions forKey:identifier];
   }
 
   for (int i = 0; i < objects.count; i++) {
     id item = [objects objectAtIndex:i];
-    NSMutableArray *positions = [oldIndexes objectForKey:item];
+    id identifier = [self uniqueIdentifierForObject:item];
+    NSMutableArray *positions = [oldIndexes objectForKey:identifier];
     NSNumber *oldIndex = nil;
     if (positions.count > 0) {
       // Without loss of generality, assume this duplicate was the first. This
@@ -97,7 +96,7 @@
       oldIndex = [positions objectAtIndex:0];
       [positions removeObjectAtIndex:0];
     } else {
-      [oldIndexes removeObjectForKey:item];
+      [oldIndexes removeObjectForKey:identifier];
     }
 
     NSNumber *newIndex = @(i);
@@ -127,21 +126,42 @@
           }
         }
       } else {
+        UITableViewCell *cell = [self cellAtIndex:[oldIndex unsignedIntegerValue]];
+        if (cell) {
+          // Cell is visible, repaint it
+          [self configureCell:cell atIndex:[newIndex unsignedIntegerValue]];
+        }
         [self moveRowAtIndex:[oldIndex unsignedIntegerValue] toIndex:[newIndex unsignedIntegerValue]];
       }
     } else {
+      UITableViewRowAnimation insertAnimation = animated ?
+      [self animationForInsertingObject:item atIndex:[newIndex unsignedIntegerValue]] : UITableViewRowAnimationNone;
       [self insertRowsAtIndices:[NSIndexSet indexSetWithIndex:[newIndex unsignedIntegerValue]] withRowAnimation:insertAnimation];
     }
   }
-  NSMutableIndexSet *deleted = [NSMutableIndexSet new];
-  for (id item in oldIndexes) {
-    NSArray <NSNumber *> *indexes = [oldIndexes objectForKey:item];
+  for (id identifier in oldIndexes) {
+    NSArray <NSNumber *> *indexes = [oldIndexes objectForKey:identifier];
     for (NSNumber *index in indexes) {
-      [deleted addIndex:[index unsignedIntegerValue]];
+      id item = [oldObjects objectAtIndex:[index unsignedIntegerValue]];
+      UITableViewRowAnimation deleteAnimation = animated ?
+      [self animationForDeletingObject:item atIndex:[index unsignedIntegerValue]] : UITableViewRowAnimationNone;
+      [self deleteRowsAtIndices:[NSIndexSet indexSetWithIndex:[index unsignedIntegerValue]]
+               withRowAnimation:deleteAnimation];
     }
   }
-  [self deleteRowsAtIndices:deleted withRowAnimation:deleteAnimation];
   [self endUpdates];
+}
+
+- (UITableViewRowAnimation)animationForInsertingObject:(id)object atIndex:(NSUInteger)index {
+  return UITableViewRowAnimationTop;
+}
+
+- (UITableViewRowAnimation)animationForDeletingObject:(id)object atIndex:(NSUInteger)index {
+  return UITableViewRowAnimationBottom;
+}
+
+- (id)uniqueIdentifierForObject:(id)object {
+  return object;
 }
 
 #pragma mark - Cell source

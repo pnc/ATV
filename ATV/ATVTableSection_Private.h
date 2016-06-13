@@ -15,4 +15,5 @@
 @interface ATVTableSection ()
 @property (ATV_WEAK) ATVTableView* _tableView;
 @property (strong) NSMutableDictionary* registeredNibs;
+@property BOOL needsToPerformUpdates;
 @end

@@ -80,4 +80,7 @@
                 toIndex:(NSUInteger)newIndex;
 - (void) reloadSectionWithRowAnimation:(UITableViewRowAnimation)animation;
 
+- (void)setNeedsToPerformUpdates;
+- (void)performUpdatesAnimated:(BOOL)animated;
+
 @end

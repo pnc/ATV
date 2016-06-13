@@ -5,4 +5,7 @@
 @property (strong) NSMutableArray* sections;
 @property UITableViewCellSeparatorStyle desiredSeparatorStyle;
 
+@property BOOL willPerformUpdates;
+- (void)setWillPerformUpdates;
+
 @end
