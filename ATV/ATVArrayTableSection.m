@@ -126,6 +126,11 @@
           }
         }
       } else {
+        UITableViewCell *cell = [self cellAtIndex:[oldIndex unsignedIntegerValue]];
+        if (cell) {
+          // Cell is visible, repaint it
+          [self configureCell:cell atIndex:[newIndex unsignedIntegerValue]];
+        }
         [self moveRowAtIndex:[oldIndex unsignedIntegerValue] toIndex:[newIndex unsignedIntegerValue]];
       }
     } else {
