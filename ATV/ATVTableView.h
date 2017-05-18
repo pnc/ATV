@@ -25,6 +25,10 @@
 @property (nonatomic, strong) UIView* emptyView;
 @property (nonatomic) BOOL emptyViewHonorsContentInset;
 
+#pragma mark - Deferred updates
+
+- (void)performUpdatesAnimated:(BOOL)animated;
+
 #pragma mark - Private
 
 - (UITableViewCell*) cellForRowAtIndex:(NSUInteger)index inSection:(ATVTableSection*)section;
