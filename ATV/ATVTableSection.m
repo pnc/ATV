@@ -1,6 +1,7 @@
 #import "ATVTableSection.h"
 #import "ATVTableSection_Private.h"
 #import "ATVTableView.h"
+#import "ATVTableView_Private.h"
 
 @implementation ATVTableSection
 
@@ -200,6 +201,17 @@
 
 - (void) deselectRowAtIndex:(NSUInteger)index animated:(BOOL)animated {
   [self._tableView deselectRowAtIndex:index inSection:self animated:animated];
+}
+
+#pragma mark - Deferred updates
+
+- (void)setNeedsToPerformUpdates {
+  self.needsToPerformUpdates = YES;
+  [self._tableView setWillPerformUpdates];
+}
+
+- (void)performUpdatesAnimated:(BOOL)animated {
+  self.needsToPerformUpdates = NO;
 }
 
 @end
